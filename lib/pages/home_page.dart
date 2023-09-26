@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matemafront/widgets/task_widget.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_dimensions.dart';
@@ -13,30 +14,77 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColors.lightBackground, // Set any color you want here.
     ));
     return Scaffold(
-        body: Column(
-      children: [
-        const SizedBox(
-          height: AppDimensions.xxs,
+        appBar: AppBar(
+          title: const Text('MaTema', style: AppFonts.semiboldDark50),
+          backgroundColor: AppColors.lightBackground, 
+          elevation: AppDimensions.t,
         ),
-        Row(
-          children: const [
-            SizedBox(
-              width: AppDimensions.xxxs,
+        backgroundColor: AppColors.lightBackground,
+        body: Column(
+          children: [
+            const SizedBox(
+              height: AppDimensions.xxxs,
             ),
-            Text(
-              'MaTema',
-              style: AppFonts.semibold50,
+            // Row(
+            //   children: const [
+            //     SizedBox(
+            //       width: AppDimensions.xxxs,
+            //     ),
+            //     Text(
+            //       'MaTema',
+            //       style: AppFonts.semiboldDark50,
+            //     ),
+            //   ],
+            // ),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: const [
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                  TaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxs,
+                  ),
+                ],
+              ),
             ),
           ],
-        )
-      ],
-    ));
+        ));
   }
 }
