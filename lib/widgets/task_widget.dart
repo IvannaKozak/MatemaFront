@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_dimensions.dart';
-import '../utils/app_fonts.dart';
+import 'package:matemafront/utils/app_colors.dart';
+import 'package:matemafront/utils/app_dimensions.dart';
+import 'package:matemafront/utils/app_fonts.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({Key? key}) : super(key: key);
@@ -13,9 +13,9 @@ class TaskWidget extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),  // 20% opacity
+            color: Colors.black.withOpacity(0.1),
             blurRadius: 10,
-            offset: const Offset(0, 4),  // Example offset
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -40,10 +40,9 @@ class TaskWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Задача про метеликів",
+                          'Задача про метеликів',
                           style: AppFonts.boldDark26,
                         ),
-                        // ... add other children for the column as needed
                       ],
                     ),
                   ),
@@ -58,7 +57,7 @@ class TaskWidget extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: const Text(
-                      "+1",
+                      '+1',
                       style: AppFonts.boldWhite26,
                     ),
                   ),

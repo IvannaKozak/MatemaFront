@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matemafront/widgets/task_widget.dart';
 
-import '../utils/app_colors.dart';
-import '../utils/app_dimensions.dart';
-import '../utils/app_fonts.dart';
+import 'package:matemafront/utils/app_colors.dart';
+import 'package:matemafront/utils/app_dimensions.dart';
+import 'package:matemafront/utils/app_fonts.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -17,12 +17,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.lightBackground, // Set any color you want here.
+      statusBarColor: AppColors.lightBackground,
     ));
     return Scaffold(
         appBar: AppBar(
-          title: const Text('MaTema', style: AppFonts.semiboldDark50),
-          backgroundColor: AppColors.lightBackground, 
+          title: const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'MaTema',
+              style: AppFonts.semiboldDark50,
+            ),
+          ),
+          backgroundColor: AppColors.lightBackground,
           elevation: AppDimensions.t,
         ),
         backgroundColor: AppColors.lightBackground,
