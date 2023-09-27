@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matemafront/widgets/completed_task.dart';
+import 'package:matemafront/widgets/score_bar.dart';
 import 'package:matemafront/widgets/task_widget.dart';
 
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
+import 'package:matemafront/widgets/week_task_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -21,11 +24,20 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
     return Scaffold(
         appBar: AppBar(
-          title: const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'MaTema',
-              style: AppFonts.semiboldDark50,
+          title: Align(
+            alignment: Alignment.centerLeft, // for ios because there is in the middle
+            child: Row(
+              children: [
+                const Text(
+                  'MaTema',
+                  style: AppFonts.semiboldDark50,
+                ),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.only(right: 0.0),
+                  child: ScoreBarWidget(),
+                ),
+              ],
             ),
           ),
           backgroundColor: AppColors.lightBackground,
@@ -35,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           children: [
             const SizedBox(
-              height: AppDimensions.xxxs,
+              height: AppDimensions.xxxxs,
             ),
             // Row(
             //   children: const [
@@ -53,39 +65,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.zero,
                 children: const [
                   SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
+                  ),
+                  CompletedTaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxxs,
                   ),
                   TaskWidget(),
                   SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
+                  ),
+                  CompletedTaskWidget(),
+                  SizedBox(
+                    height: AppDimensions.xxxxs,
                   ),
                   TaskWidget(),
                   SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
                   ),
                   TaskWidget(),
                   SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
                   ),
                   TaskWidget(),
                   SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
                   ),
-                  TaskWidget(),
+                  WeekTaskWidget(),
                   SizedBox(
-                    height: AppDimensions.xxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxs,
+                    height: AppDimensions.xxxxs,
                   ),
                 ],
               ),
