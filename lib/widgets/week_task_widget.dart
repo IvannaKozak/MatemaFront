@@ -3,8 +3,8 @@ import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
-class TaskWidget extends StatelessWidget {
-  const TaskWidget({Key? key}) : super(key: key);
+class WeekTaskWidget extends StatelessWidget {
+  const WeekTaskWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class TaskWidget extends StatelessWidget {
             child: Container(
               height: AppDimensions.xl,
               decoration: const BoxDecoration(
-                color: AppColors.white,
+                color: AppColors.appPurple,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   bottomRight: Radius.circular(20),
@@ -40,13 +40,13 @@ class TaskWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          'Задача про метеликів',
-                          style: AppFonts.boldDark26,
+                          'Дуже складна задача',
+                          style: AppFonts.boldWhite26,
                         ),
                         SizedBox(height: AppDimensions.xxxt),
                         Text(
-                          'Логічна задача',
-                          style: AppFonts.semiboldDark20,
+                          'Задача на тиждень',
+                          style: AppFonts.semiboldWhite20,
                         ),
                       ],
                     ),
@@ -54,7 +54,6 @@ class TaskWidget extends StatelessWidget {
                   Container(
                     width: 60,
                     decoration: const BoxDecoration(
-                      color: AppColors.appPurple,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20),
                         bottomRight: Radius.circular(20),
@@ -62,7 +61,7 @@ class TaskWidget extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: const Text(
-                      '+1',
+                      '+9',
                       style: AppFonts.boldWhite26,
                     ),
                   ),

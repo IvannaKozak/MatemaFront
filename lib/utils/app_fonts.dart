@@ -8,23 +8,34 @@ class AppFonts {
     fontFamily: 'Inter-Bold',
     fontSize: 26.0,
     fontWeight: FontWeight.w700,
-    height: 1.5,
     color: AppColors.textColor,
   );
 
-    static const TextStyle semiboldDark50 = TextStyle(
-    fontFamily: 'Inter-SemiBold.ttf',
-    fontSize: 50.0,
-    fontWeight: FontWeight.w500,
-    height: 1.5,
-    color: AppColors.textColor,
-  );
-
-    static const TextStyle boldWhite26 = TextStyle(
+  static const TextStyle boldWhite26 = TextStyle(
     fontFamily: 'Inter-Bold',
     fontSize: 26.0,
     fontWeight: FontWeight.w700,
-    height: 1.5,
     color: AppColors.white,
+  );
+
+  static const TextStyle semiboldWhite20 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
+  static const TextStyle semiboldDark20 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
+  static const TextStyle semiboldDark50 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 50.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
   );
 }
