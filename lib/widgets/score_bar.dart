@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
-import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
 class ScoreBarWidget extends StatelessWidget {
