@@ -7,6 +7,7 @@ class AppColors {
   static const black = Colors.black;
 
   static const lightBackground = Color.fromARGB(255, 252, 244, 242);
+  static const verylightBackground = Color.fromARGB(255, 250, 249, 255);
   //static const lightBackground = Color(0xFFFFFAF9);
 
   static const appPurple = Color(0xFF7D56A5);
