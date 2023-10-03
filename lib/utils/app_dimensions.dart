@@ -1,11 +1,11 @@
-class AppDimensions{
+class AppDimensions {
   AppDimensions._();
 
   static const t = 0.0;
   static const xxxt = 5.0;
-  
 
   static const xxxxs = 15.0;
+  static const xxxxs_ = 16.0;
   static const xxxs = 20.0;
   static const xxs = 30.0;
   static const xs = 35.0;

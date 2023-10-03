@@ -3,8 +3,8 @@ import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
-class TaskWidget extends StatelessWidget {
-  const TaskWidget({Key? key}) : super(key: key);
+class TaskWidgetClear extends StatelessWidget {
+  const TaskWidgetClear({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class TaskWidget extends StatelessWidget {
                   bottomRight: Radius.circular(20),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 children: [
-                  const SizedBox(width: AppDimensions.xxxxs),
-                  const Expanded(
+                  SizedBox(width: AppDimensions.xxxxs),
+                  Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,21 +49,6 @@ class TaskWidget extends StatelessWidget {
                           style: AppFonts.semiboldDark20,
                         ),
                       ],
-                    ),
-                  ),
-                  Container(
-                    width: 60,
-                    decoration: const BoxDecoration(
-                      color: AppColors.appPurple,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: const Text(
-                      '+1',
-                      style: AppFonts.boldWhite26,
                     ),
                   ),
                 ],
