@@ -33,7 +33,7 @@ class CompletedTaskWidget extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const SizedBox(width: AppDimensions.xxxxs),
+                  const SizedBox(width: AppDimensions.xxxs),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
