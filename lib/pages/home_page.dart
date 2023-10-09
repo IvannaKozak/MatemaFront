@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matemafront/widgets/completed_task.dart';
+
 import 'package:matemafront/widgets/score_bar.dart';
 import 'package:matemafront/widgets/task_widget.dart';
 
@@ -24,10 +25,15 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
     return Scaffold(
         appBar: AppBar(
+          titleSpacing: 0.0,
           title: Align(
-            alignment: Alignment.centerLeft, // for ios because there is in the middle
+            alignment:
+                Alignment.centerLeft, // for ios because there is in the middle
             child: Row(
               children: [
+                const SizedBox(
+                  width: AppDimensions.xxxs,
+                ),
                 const Text(
                   'MaTema',
                   style: AppFonts.semiboldDark50,
@@ -65,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.zero,
                 children: const [
                   SizedBox(
-                    height: AppDimensions.xxxxs,
+                    height: AppDimensions.xxxs,
                   ),
                   CompletedTaskWidget(),
                   SizedBox(
@@ -98,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            //const MyNavigationBar()
           ],
         ));
   }

@@ -43,9 +43,11 @@ class ScoreBarWidget extends StatelessWidget {
                   style: AppFonts.boldWhite26,
                 ),
               ),
-              const Text(
-                '1811',
-                style: AppFonts.boldDark26,
+              const Center(
+                child: Text(
+                  '1811',
+                  style: AppFonts.boldDark26,
+                ),
               ),
             ],
           ),
