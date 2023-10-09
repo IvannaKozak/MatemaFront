@@ -31,20 +31,20 @@ class TaskWidgetClear extends StatelessWidget {
                   bottomRight: Radius.circular(20),
                 ),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  SizedBox(width: AppDimensions.xxxxs),
+                  const SizedBox(width: AppDimensions.xxxxs),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Задача про метеликів',
                           style: AppFonts.boldDark26,
                         ),
-                        SizedBox(height: AppDimensions.xxxt),
-                        Text(
+                        const SizedBox(height: AppDimensions.xxxt),
+                        const Text(
                           'Логічна задача',
                           style: AppFonts.semiboldDark20,
                         ),

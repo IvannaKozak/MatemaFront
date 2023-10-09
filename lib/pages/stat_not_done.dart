@@ -12,18 +12,17 @@ class StatNotDone extends StatelessWidget {
         backgroundColor: AppColors.verylightBackground,
         body: Column(
           children: [
-            const Align(
+            Align(
               heightFactor: 2.5,
               widthFactor: 0.95,
-              alignment: Alignment
-                  .centerLeft,
+              alignment: Alignment.centerLeft,
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     'Історія за останні 30 днів',
                     style: AppFonts.semiboldDark20,
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),
