@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:matemafront/pages/home_page.dart';
 import 'package:matemafront/widgets/navigation_bar.dart';
 
 void main() {

@@ -17,17 +17,17 @@ class MyNavigationBar extends StatefulWidget {
 class NavPageState extends State<MyNavigationBar> {
   late final List<Widget> _children = [
     Container(
-      child: Text("Статистика"),
+      child: const Text('Статистика'),
     ),
     Container(
-      child: Text("Статистика"),
+      child: const Text('Статистика'),
     ),
-    MyHomePage(),
+    const MyHomePage(),
     Container(
-      child: Text("Статистика"),
+      child: const Text('Статистика'),
     ),
     Container(
-      child: Text("Статистика"),
+      child: const Text('Статистика'),
     ),
   ];
 
