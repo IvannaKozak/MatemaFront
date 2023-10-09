@@ -17,17 +17,17 @@ class MyNavigationBar extends StatefulWidget {
 class NavPageState extends State<MyNavigationBar> {
   late final List<Widget> _children = [
     Container(
-      child: const Text('Статистика'),
+      child: const Text('Профіль'),
     ),
     Container(
       child: const Text('Статистика'),
     ),
     const MyHomePage(),
     Container(
-      child: const Text('Статистика'),
+      child: const Text('Рейтинг'),
     ),
     Container(
-      child: const Text('Статистика'),
+      child: const Text('Вибір тем'),
     ),
   ];
 
@@ -51,28 +51,28 @@ class NavPageState extends State<MyNavigationBar> {
           items: [
             const BottomNavigationBarItem(
               backgroundColor: AppColors.white,
+              icon: Icon(Icons.person),
+              label: 'Профіль',
+            ),
+            const BottomNavigationBarItem(
+              backgroundColor: AppColors.white,
+              icon: Icon(Icons.search),
+              label: 'Статистика',
+            ),
+            const BottomNavigationBarItem(
+              backgroundColor: AppColors.white,
               icon: Icon(Icons.home),
               label: 'Головна',
             ),
             const BottomNavigationBarItem(
               backgroundColor: AppColors.white,
-              icon: Icon(Icons.search),
-              label: 'Пошук',
+              icon: Icon(Icons.person),
+              label: 'Рейтинг',
             ),
             const BottomNavigationBarItem(
               backgroundColor: AppColors.white,
               icon: Icon(Icons.library_books),
-              label: 'Бібліотека',
-            ),
-            const BottomNavigationBarItem(
-              backgroundColor: AppColors.white,
-              icon: Icon(Icons.person),
-              label: 'Профіль',
-            ),
-            const BottomNavigationBarItem(
-              backgroundColor: AppColors.white,
-              icon: Icon(Icons.person),
-              label: 'Профіль',
+              label: 'Вибір тем',
             ),
           ],
         ),

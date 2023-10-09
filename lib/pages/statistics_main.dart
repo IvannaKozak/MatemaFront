@@ -9,10 +9,10 @@ class MyTabs extends StatefulWidget {
   const MyTabs({super.key});
 
   @override
-  _MyTabsState createState() => _MyTabsState();
+  MyTabsState createState() => MyTabsState();
 }
 
-class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
+class MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectedIndex = 0;
   late PageController _pageController;
@@ -43,15 +43,15 @@ class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
         toolbarHeight: 90,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: const Align(
+        title: Align(
           alignment: Alignment.centerLeft,
           child: Row(
             children: [
-              Text(
+              const Text(
                 'Статистика',
                 style: AppFonts.semiboldDark50,
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),
