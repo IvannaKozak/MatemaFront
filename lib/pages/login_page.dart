@@ -26,18 +26,18 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.greenAccent,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Text(
+                child: const Text(
                   'Привіт друже👋\nЗ поверненням, увійдіть у ваш обліковий запис',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Пароль',
@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Пошта',
@@ -60,61 +60,68 @@ class LoginScreen extends StatelessWidget {
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {}, 
-                  child: Text('Забули пароль?', style: TextStyle(color: AppColors.appPurple)),
+                  onPressed: () {},
+                  child: const Text('Забули пароль?',
+                      style: TextStyle(color: AppColors.appPurple)),
                 ),
               ),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  backgroundColor: Colors.purple,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Text('Увійти'),
+                child: const Text('Увійти'),
               ),
-              SizedBox(height: 20),
-              Text('АБО', textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
-              SizedBox(height: 10),
+              const SizedBox(height: 20),
+              const Text('АБО',
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
+              const SizedBox(height: 10),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.mail_outline),
-                label: Text('Вхід з Google'),
+                icon: const Icon(Icons.mail_outline),
+                label: const Text('Вхід з Google'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                     side: BorderSide(color: Colors.grey[300]!),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.apple),
-                label: Text('Вхід з Apple'),
+                icon: const Icon(Icons.apple),
+                label: const Text('Вхід з Apple'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                     side: BorderSide(color: Colors.grey[300]!),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
-                child: Text('У вас ще немає облікового запису? Створіть його', style: TextStyle(color: AppColors.black)),
+                child: const Text(
+                    'У вас ще немає облікового запису? Створіть його',
+                    style: TextStyle(color: AppColors.black)),
               ),
             ],
           ),
