@@ -26,20 +26,20 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           titleSpacing: 0.0,
-          title: const Align(
+          title: Align(
             alignment:
                 Alignment.centerLeft, // for ios because there is in the middle
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: AppDimensions.xxxs,
                 ),
-                Text(
+                const Text(
                   'MaTema',
                   style: AppFonts.semiboldDark50,
                 ),
-                Spacer(),
-                Padding(
+                const Spacer(),
+                const Padding(
                   padding: EdgeInsets.only(right: 0.0),
                   child: ScoreBarWidget(),
                 ),
@@ -54,7 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(
               child: RawScrollbar(
-                padding: const EdgeInsets.only(top: 0, bottom:0, left:0, right:11),
+                padding: const EdgeInsets.only(
+                    top: 0, bottom: 0, left: 0, right: 11),
                 thumbVisibility: true,
                 thickness: 6,
                 radius: const Radius.circular(20),
