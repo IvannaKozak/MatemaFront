@@ -5,14 +5,14 @@ import 'package:matemafront/widgets/stat_page_view.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
-class MyTabs extends StatefulWidget {
-  const MyTabs({super.key});
+class MyStatistic extends StatefulWidget {
+  const MyStatistic({super.key});
 
   @override
-  MyTabsState createState() => MyTabsState();
+  MyStatisticState createState() => MyStatisticState();
 }
 
-class MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
+class MyStatisticState extends State<MyStatistic> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectedIndex = 0;
   late PageController _pageController;
@@ -43,15 +43,15 @@ class MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
         toolbarHeight: 90,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Align(
+        title: const Align(
           alignment: Alignment.centerLeft,
           child: Row(
             children: [
-              const Text(
+              Text(
                 'Статистика',
                 style: AppFonts.semiboldDark50,
               ),
-              const Spacer(),
+              Spacer(),
             ],
           ),
         ),

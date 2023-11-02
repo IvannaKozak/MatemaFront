@@ -21,87 +21,80 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.lightBackground,
+      statusBarColor: AppColors.verylightBackground,
     ));
     return Scaffold(
         appBar: AppBar(
           titleSpacing: 0.0,
-          title: Align(
+          title: const Align(
             alignment:
                 Alignment.centerLeft, // for ios because there is in the middle
             child: Row(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: AppDimensions.xxxs,
                 ),
-                const Text(
+                Text(
                   'MaTema',
                   style: AppFonts.semiboldDark50,
                 ),
-                const Spacer(),
-                const Padding(
+                Spacer(),
+                Padding(
                   padding: EdgeInsets.only(right: 0.0),
                   child: ScoreBarWidget(),
                 ),
               ],
             ),
           ),
-          backgroundColor: AppColors.lightBackground,
+          backgroundColor: AppColors.verylightBackground,
           elevation: AppDimensions.t,
         ),
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.verylightBackground,
         body: Column(
           children: [
-            const SizedBox(
-              height: AppDimensions.xxxxs,
-            ),
-            // Row(
-            //   children: const [
-            //     SizedBox(
-            //       width: AppDimensions.xxxs,
-            //     ),
-            //     Text(
-            //       'MaTema',
-            //       style: AppFonts.semiboldDark50,
-            //     ),
-            //   ],
-            // ),
             Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: const [
-                  SizedBox(
-                    height: AppDimensions.xxxs,
-                  ),
-                  CompletedTaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  CompletedTaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  TaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                  WeekTaskWidget(),
-                  SizedBox(
-                    height: AppDimensions.xxxxs,
-                  ),
-                ],
+              child: RawScrollbar(
+                padding: const EdgeInsets.only(top: 0, bottom:0, left:0, right:11),
+                thumbVisibility: true,
+                thickness: 6,
+                radius: const Radius.circular(20),
+                thumbColor: AppColors.textColor,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: const [
+                    SizedBox(
+                      height: AppDimensions.xxxs,
+                    ),
+                    CompletedTaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    TaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    CompletedTaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    TaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    TaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    TaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                    WeekTaskWidget(),
+                    SizedBox(
+                      height: AppDimensions.xxxxs,
+                    ),
+                  ],
+                ),
               ),
             ),
             //const MyNavigationBar()
