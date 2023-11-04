@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/pages/choose_topics_page.dart';
 import 'package:matemafront/pages/home_page.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/pages/statistics_main.dart';
@@ -34,13 +35,7 @@ class NavPageState extends State<MyNavigationBar> {
       ),
       alignment: Alignment.center,
     ),
-    Container(
-      alignment: Alignment.center,
-      child: const Text(
-        'Вибір тем',
-        style: AppFonts.semiboldDark50,
-      ),
-    ),
+    const MyChoicePage(),
   ];
 
   void onTabTapped(int index) {
