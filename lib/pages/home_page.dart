@@ -25,24 +25,32 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: AppDimensions.xl,
           titleSpacing: 0.0,
           title: Align(
             alignment:
                 Alignment.centerLeft, // for ios because there is in the middle
-            child: Row(
+            child: Column(
               children: [
-                const SizedBox(
-                  width: AppDimensions.xxxs,
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: AppDimensions.xxxs,
+                    ),
+                    const Text(
+                      'MaTema',
+                      style: AppFonts.semiboldDark50,
+                    ),
+                    const Spacer(),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 0.0),
+                      child: ScoreBarWidget(),
+                    ),
+                  ],
                 ),
-                const Text(
-                  'MaTema',
-                  style: AppFonts.semiboldDark50,
-                ),
-                const Spacer(),
-                const Padding(
-                  padding: EdgeInsets.only(right: 0.0),
-                  child: ScoreBarWidget(),
-                ),
+                // const SizedBox(
+                //   height: AppDimensions.xxxxs,
+                // ),
               ],
             ),
           ),
@@ -64,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.zero,
                   children: const [
                     SizedBox(
-                      height: AppDimensions.xxxs,
+                      height: AppDimensions.xxxxt,
                     ),
                     CompletedTaskWidget(),
                     SizedBox(
@@ -98,7 +106,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            //const MyNavigationBar()
           ],
         ));
   }
