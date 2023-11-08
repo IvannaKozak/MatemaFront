@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
     return Scaffold(
         appBar: AppBar(
-          //toolbarHeight: AppDimensions.xl,
+          toolbarHeight: AppDimensions.xl,
           titleSpacing: 0.0,
           title: Align(
             alignment:

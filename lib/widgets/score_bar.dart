@@ -27,8 +27,8 @@ class ScoreBarWidget extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 40,
@@ -46,10 +46,16 @@ class ScoreBarWidget extends StatelessWidget {
               height: 30,
             ),
           ),
-          const Text(
-            '1811',
-            textAlign: TextAlign.center,
-            style: AppFonts.boldDark26,
+          Expanded(
+            child: Container(
+              child: const Center(
+                child: Text(
+                  '1811',
+                  textAlign: TextAlign.center,
+                  style: AppFonts.boldDark26,
+                ),
+              ),
+            ),
           ),
         ],
       ),
