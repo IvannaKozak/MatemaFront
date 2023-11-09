@@ -28,6 +28,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               Container(
+
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: double.infinity,
                 height: 115,
@@ -67,6 +68,8 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+
+          
                   ),
                 ),
               ),
@@ -226,10 +229,13 @@ class LoginScreen extends StatelessWidget {
                       ),
                       side: BorderSide(color: Colors.grey[300]!),
                     ),
+
+              
                   ),
                 ),
               ),
               const SizedBox(height: 10),
+
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.xxs),
                 width: 370,
@@ -286,6 +292,8 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+
+              
               ),
             ],
           ),

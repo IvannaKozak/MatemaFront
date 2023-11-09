@@ -18,6 +18,13 @@ class AppFonts {
     color: AppColors.white,
   );
 
+  static const TextStyle semiboldWhite13 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 13.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
   static const TextStyle semiboldWhite20 = TextStyle(
     fontFamily: 'Inter-SemiBold',
     fontSize: 20.0,
@@ -25,9 +32,30 @@ class AppFonts {
     color: AppColors.white,
   );
 
+  static const TextStyle semiboldDark16 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 16.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
   static const TextStyle semiboldDark20 = TextStyle(
     fontFamily: 'Inter-SemiBold',
     fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
+  static const TextStyle semiboldDark24 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
+  static const TextStyle semiboldDark45 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 45.0,
     fontWeight: FontWeight.w500,
     color: AppColors.textColor,
   );

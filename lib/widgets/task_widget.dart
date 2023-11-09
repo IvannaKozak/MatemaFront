@@ -34,17 +34,17 @@ class TaskWidget extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: AppDimensions.xxxxs),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Задача про метеликів',
                           style: AppFonts.boldDark26,
                         ),
-                        SizedBox(height: AppDimensions.xxxt),
-                        Text(
+                        const SizedBox(height: AppDimensions.xxxt),
+                        const Text(
                           'Логічна задача',
                           style: AppFonts.semiboldDark20,
                         ),
