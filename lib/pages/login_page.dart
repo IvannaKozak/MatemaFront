@@ -28,7 +28,6 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               Container(
-
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: double.infinity,
                 height: 115,
@@ -43,11 +42,11 @@ class LoginScreen extends StatelessWidget {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -56,8 +55,8 @@ class LoginScreen extends StatelessWidget {
                           color: Colors.purple,
                         ),
                       ),
-                      SizedBox(height: 5.0),
-                      Text(
+                      const SizedBox(height: 5.0),
+                      const Text(
                         'З поверненням, увійдіть у ваш обліковий запис',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -68,8 +67,6 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-
-          
                   ),
                 ),
               ),
@@ -88,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           hintText: 'Пароль',
                           filled: true,
@@ -107,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Пошта',
                         filled: true,
@@ -148,7 +145,7 @@ class LoginScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -174,14 +171,14 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -192,7 +189,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -217,8 +214,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     //padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
@@ -229,13 +226,10 @@ class LoginScreen extends StatelessWidget {
                       ),
                       side: BorderSide(color: Colors.grey[300]!),
                     ),
-
-              
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.xxs),
                 width: 370,
@@ -252,8 +246,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280), backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -292,8 +285,6 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
-              
               ),
             ],
           ),
