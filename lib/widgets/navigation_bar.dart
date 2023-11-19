@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/pages/adminpanel/view_all.dart';
 import 'package:matemafront/pages/choose_topics_page.dart';
 import 'package:matemafront/pages/home_page.dart';
+import 'package:matemafront/pages/register_page.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/pages/statistics_main.dart';
 import 'package:matemafront/utils/app_fonts.dart';
@@ -28,6 +30,8 @@ class NavPageState extends State<MyNavigationBar> {
     ),
     const MyStatistic(),
     const MyHomePage(),
+    // const MyAdminPage(),
+    // RegisterScreen(),
     Container(
       child: const Text(
         'Рейтинг',
