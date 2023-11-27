@@ -21,4 +21,5 @@ class AppDimensions {
   static const xl = 80.0;
   static const xxl = 100.0;
   static const xxxl = 150.0;
+  static const xxxxl = 300.0;
 }

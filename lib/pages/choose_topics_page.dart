@@ -78,7 +78,7 @@ class _MyChoicePageState extends State<MyChoicePage> {
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount:
-                      16, // 7 TopicWidgets + 7 SizedBox widgets = 14; but since they are paired together, we need only 8 iterations
+                      16, // 8 TopicWidgets + 8 SizedBox widgets = 16; but since they are paired together, we need only 8 iterations
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
                       return const SizedBox(
