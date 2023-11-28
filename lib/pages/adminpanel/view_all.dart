@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matemafront/widgets/log_out_button.dart';
 import 'package:matemafront/widgets/plus_item_widget.dart';
-
 import 'package:matemafront/widgets/task_widget.dart';
-
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
@@ -54,70 +53,84 @@ class _MyAdminPageState extends State<MyAdminPage> {
           elevation: AppDimensions.t,
         ),
         backgroundColor: AppColors.verylightBackground,
-        body: Column(
+        body: Stack(
           children: [
-            Expanded(
-              child: RawScrollbar(
-                padding: const EdgeInsets.only(
-                    top: 0, bottom: 0, left: 0, right: 11),
-                thumbVisibility: true,
-                thickness: 6,
-                radius: const Radius.circular(20),
-                thumbColor: AppColors.textColor,
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: const [
-                    SizedBox(
-                      height: AppDimensions.xxxxt,
+            Column(
+              children: [
+                Expanded(
+                  child: RawScrollbar(
+                    padding: const EdgeInsets.only(
+                        top: 0, bottom: 0, left: 0, right: 11),
+                    thumbVisibility: true,
+                    thickness: 6,
+                    radius: const Radius.circular(20),
+                    thumbColor: AppColors.textColor,
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: const [
+                        SizedBox(
+                          height: AppDimensions.xxxxt,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        WeekTaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        WeekTaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                        TaskWidget(),
+                        SizedBox(
+                          height: AppDimensions.xxxxs,
+                        ),
+                      ],
                     ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    WeekTaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    WeekTaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                    TaskWidget(),
-                    SizedBox(
-                      height: AppDimensions.xxxxs,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
+            const Positioned(
+              bottom: 15.0, // Adjust the positioning as needed
+              // left: 0,
+              right: 0,
+              child: LogOutButton(),
+            ),
+            // const LogOutButton(),
+            // const SizedBox(
+            //   height: AppDimensions.xxs,
+            // )
           ],
         ));
   }
