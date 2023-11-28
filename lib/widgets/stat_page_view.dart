@@ -4,12 +4,12 @@ import 'package:matemafront/pages/stat_not_done.dart';
 import 'package:matemafront/pages/overall_stat.dart';
 
 class MyPageView extends StatelessWidget {
-
   MyPageView({
     required this.pageController,
     required this.selectedIndex,
+    required ScrollController scrollController,
   });
-  
+
   final PageController pageController;
   final int selectedIndex;
 
