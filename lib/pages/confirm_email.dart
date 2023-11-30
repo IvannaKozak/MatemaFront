@@ -5,15 +5,11 @@ import 'package:matemafront/utils/app_fonts.dart';
 import 'package:matemafront/pages/login_page.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class Confirm_email extends StatelessWidget {
-
   final String username;
   Confirm_email({Key? key, required this.username}) : super(key: key);
 
   Future<void> confirmUser(BuildContext context) async {
-    
     var response = await http.get(
       Uri.parse(
           'https://matema-dev-ncrzmugb6q-lm.a.run.app/user/check-user-active/$username/'),
@@ -24,11 +20,11 @@ class Confirm_email extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Помилка'),
-          content: Text('Ви не підтвердили електронну пошту.'),
+          title: const Text('Помилка'),
+          content: const Text('Ви не підтвердили електронну пошту.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -49,7 +45,7 @@ class Confirm_email extends StatelessWidget {
     } else {
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(),
+        builder: (context) => const AlertDialog(),
       );
     }
   }
@@ -92,7 +88,7 @@ class Confirm_email extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Підтвердіть свою електронну адресу',
                       style: TextStyle(
                         fontFamily: 'Inter',
@@ -101,8 +97,8 @@ class Confirm_email extends StatelessWidget {
                         color: Colors.purple,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Після цього увійдіть у свій акаунт',
                       style: TextStyle(
                         fontFamily: 'Inter',

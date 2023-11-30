@@ -20,11 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Помилка'),
-          content: Text('Будь ласка, заповніть всі поля.'),
+          title: const Text('Помилка'),
+          content: const Text('Будь ласка, заповніть всі поля.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 201 || response.statusCode == 200) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
       );
     } else {
       // Показати діалогове вікно з помилкою від сервера
@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: TextField(
                         controller: passwordController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Пароль',
                           filled: true,
                           fillColor: AppColors.white,
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: AppDimensions.xxxxs),
                     TextField(
                       controller: usernameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Нікнейм',
                         filled: true,
                         fillColor: AppColors.white,
@@ -313,7 +313,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color(0xFF6B7280), backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -365,7 +366,7 @@ void main() {
   runApp(MaterialApp(
     home: LoginScreen(),
     routes: {
-      '/MyHomePage': (context) => MyHomePage(),
+      '/MyHomePage': (context) => const MyHomePage(),
     },
   ));
 }

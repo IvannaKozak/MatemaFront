@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 
-
 class TestWindow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,11 +31,11 @@ class TestWindow extends StatelessWidget {
                         bottomLeft: Radius.zero,
                       ),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             'Задачка про книги',
                             style: TextStyle(
                               fontFamily: 'Inter',
@@ -45,8 +44,8 @@ class TestWindow extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(height: 5.0),
-                          Text(
+                          const SizedBox(height: 5.0),
+                          const Text(
                             'Проста арифметика',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -75,11 +74,11 @@ class TestWindow extends StatelessWidget {
                         bottomRight: Radius.zero,
                       ),
                     ),
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             '+5',
                             style: TextStyle(
                               fontFamily: 'Inter',
@@ -104,14 +103,11 @@ class TestWindow extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/images/matem.png',
-                      fit: BoxFit.cover
-                    ),
+                    Image.asset('assets/images/matem.png', fit: BoxFit.cover),
 
-                    SizedBox(
+                    const SizedBox(
                         height: 20), // Додає простір між текстом і зображенням
-                    Text(
+                    const Text(
                       'Хлопчик купив книгу з обгорткою за 11 гривень. За саму книгу він віддав '
                       'на 10 гривень більше вартості обкладинки. Назвіть окремо ціну '
                       'книги і обкладинки.',
@@ -138,7 +134,7 @@ class TestWindow extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           hintText: '173',
                           filled: true,
@@ -167,7 +163,7 @@ class TestWindow extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
