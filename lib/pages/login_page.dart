@@ -2,8 +2,76 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
+import 'package:matemafront/pages/home_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+
+  Future<void> loginUser() async {
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Помилка'),
+          content: Text('Будь ласка, заповніть всі поля.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+      return;
+    }
+
+    var response = await http.post(
+      Uri.parse('https://matema-dev-ncrzmugb6q-lm.a.run.app/auth/jwt/create/'),
+      body: json.encode({
+        'password': passwordController.text,
+        'username': usernameController.text,
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    // Читання відповіді
+    var message = json.decode(response.body);
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MyHomePage()),
+      );
+    } else {
+      // Показати діалогове вікно з помилкою від сервера
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Помилка'),
+          content: Text(message['error'] ?? 'Сталася помилка'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +89,7 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: AppColors.lightBackground,
       body: ListView(
         children: [
-          //Padding(
-          //padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
           Column(
-            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
               Container(
@@ -86,6 +151,7 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                       child: TextField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: 'Пароль',
                           filled: true,
@@ -105,8 +171,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
                     TextField(
+                      controller: usernameController,
                       decoration: InputDecoration(
-                        hintText: 'Пошта',
+                        hintText: 'Нікнейм',
                         filled: true,
                         fillColor: AppColors.white,
                         border: OutlineInputBorder(
@@ -143,7 +210,7 @@ class LoginScreen extends StatelessWidget {
                 width: 370,
                 height: 80,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
@@ -298,5 +365,8 @@ class LoginScreen extends StatelessWidget {
 void main() {
   runApp(MaterialApp(
     home: LoginScreen(),
+    routes: {
+      '/MyHomePage': (context) => MyHomePage(),
+    },
   ));
 }

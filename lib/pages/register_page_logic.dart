@@ -2,8 +2,113 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
+import 'package:matemafront/pages/confirm_email.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController first_nameController = TextEditingController();
+  TextEditingController last_nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController re_passwordController = TextEditingController();
+
+  
+
+  Future<void> registerUser() async {
+    
+    if (usernameController.text.isEmpty ||
+        first_nameController.text.isEmpty ||
+        last_nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        re_passwordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Помилка'),
+          content: Text('Будь ласка, заповніть всі поля.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+      return;
+    }
+    if (passwordController.text != re_passwordController.text) {
+      // Показати помилку, якщо паролі не збігаються
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Помилка'),
+          content: Text('Упс..Паролі не збігаються.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+      return;
+    }
+    var response = await http.post(
+      Uri.parse('https://matema-dev-ncrzmugb6q-lm.a.run.app/auth/users/'),
+      body: json.encode({
+        'username': usernameController.text,
+        'first_name': first_nameController.text,
+        'last_name': last_nameController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        're_password': re_passwordController.text,
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    // Читання відповіді
+    var message = json.decode(response.body);
+
+    if (response.statusCode == 201 || response.statusCode == 200 ) {
+      Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(
+    builder: (context) => Confirm_email(username: usernameController.text),
+  ),
+);
+
+    } else {
+      // Показати діалогове вікно з помилкою від сервера
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Помилка'),
+          content: Text(message['error'] ?? 'Сталася помилка'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +173,22 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 35),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Нікнейм',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.m),
                 child: Column(
@@ -83,6 +204,7 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       child: TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           hintText: 'Нікнейм',
                           filled: true,
@@ -101,91 +223,176 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Ім`я',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
+                      controller: first_nameController,
                       decoration: InputDecoration(
                         hintText: 'Ім`я',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Прізвище',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
+                      controller: last_nameController,
                       decoration: InputDecoration(
                         hintText: 'Прізвище',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Email',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Пароль',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hintText: 'Пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Повторити пароль',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
+                      controller: re_passwordController,
                       decoration: InputDecoration(
                         hintText: 'Повторити пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
@@ -194,14 +401,12 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppDimensions.xxxxs),
-
-
               Container(
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: 370,
                 height: 80,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: registerUser,
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
@@ -225,9 +430,6 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-
-              
               const SizedBox(height: AppDimensions.xxxs),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -327,7 +529,7 @@ class RegisterScreen extends StatelessWidget {
                 onPressed: () {},
                 child: RichText(
                   text: const TextSpan(
-                    text: 'У вас ще немає облікового запису? ',
+                    text: 'У вас вже є обліковий запис? ',
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 15,
@@ -335,7 +537,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Створіть його.',
+                        text: 'Увійти',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.bold,
@@ -358,5 +560,8 @@ class RegisterScreen extends StatelessWidget {
 void main() {
   runApp(MaterialApp(
     home: RegisterScreen(),
+    routes: {
+      '/confirmEmail': (context) => Confirm_email(username: "usernameController"),
+    },
   ));
 }
