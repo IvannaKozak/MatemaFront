@@ -3,11 +3,6 @@ import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
 class Data {
-  final int id;
-  final double y;
-  final Color color = AppColors.appGreen;
-  late Widget name;
-
   Data({
     required this.id,
     required this.y,
@@ -40,4 +35,8 @@ class Data {
         break;
     }
   }
+  final int id;
+  final double y;
+  final Color color = AppColors.appGreen;
+  late Widget name;
 }

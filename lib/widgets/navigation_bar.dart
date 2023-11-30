@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:matemafront/pages/adminpanel/view_all.dart';
 import 'package:matemafront/pages/choose_topics_page.dart';
 import 'package:matemafront/pages/home_page.dart';
 import 'package:matemafront/pages/profile_page.dart';
-import 'package:matemafront/pages/register_page.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/pages/statistics_main.dart';
 import 'package:matemafront/utils/app_fonts.dart';
@@ -44,7 +42,7 @@ class NavPageState extends State<MyNavigationBar> {
     });
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -73,9 +71,9 @@ class NavPageState extends State<MyNavigationBar> {
       case 0:
         return MyProfilePage();
       case 1:
-        return MyStatistic();
+        return const MyStatistic();
       case 2:
-        return MyHomePage();
+        return const MyHomePage();
       case 3:
         return Container(
           child: const Text(

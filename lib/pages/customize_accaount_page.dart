@@ -52,7 +52,7 @@ class _MyCustomAccState extends State<MyCustomAcc> {
         leading: Container(
           height: 65,
           width: 60,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(20),
@@ -99,16 +99,16 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                           radius: 100,
                           backgroundImage:
                               _image != null ? FileImage(_image!) : null,
-                          child: _image == null ? Text('Add PFP') : null,
+                          child: _image == null ? const Text('Add PFP') : null,
                         ),
                       ),
-                      SizedBox(height: 9),
-                      Text(
+                      const SizedBox(height: 9),
+                      const Text(
                         'Я',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(
+                      const Text(
                         'ID: Моє',
                         style: TextStyle(fontSize: 16),
                       ),
@@ -116,20 +116,20 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Container(
                 child: Align(
                   child: Column(
                     children: [
                       Container(
                         alignment: Alignment.bottomLeft,
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: const Text(
                           'Змінити Ім`я і Прізвище:',
                           style: AppFonts.semiboldDark24,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Container(
                         margin: const EdgeInsets.only(right: AppDimensions.s),
                         decoration: BoxDecoration(
@@ -137,7 +137,7 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                             BoxShadow(
                               color: Colors.black.withOpacity(0.1),
                               blurRadius: 10,
-                              offset: Offset(0, 4),
+                              offset: const Offset(0, 4),
                             ),
                           ],
                         ),
@@ -159,17 +159,17 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 35),
+                      const SizedBox(height: 35),
                       Container(
                         alignment: Alignment.bottomLeft,
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: const Text(
                           'Поміняти Пароль:',
                           style: AppFonts.semiboldDark24,
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(right: AppDimensions.s),
+                        margin: const EdgeInsets.only(right: AppDimensions.s),
                         child: TextField(
                           controller: _passwordController,
                           obscureText: true,
@@ -189,7 +189,7 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 35),
+                      const SizedBox(height: 35),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -210,7 +210,7 @@ class _MyCustomAccState extends State<MyCustomAcc> {
                                 ),
                               ),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Зберегти зміни',
                               style: AppFonts.boldWhite26,
                             ),

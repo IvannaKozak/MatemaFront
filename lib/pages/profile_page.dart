@@ -21,27 +21,27 @@ class MyProfilePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors.appPurple, 
-                      width: 3, 
+                      color: AppColors.appPurple,
+                      width: 3,
                     ),
                   ),
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundColor: AppColors.appGreen,
                     radius: 100,
                   ),
                 ),
-                SizedBox(height: 9),
-                Text(
+                const SizedBox(height: 9),
+                const Text(
                   'Я',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text(
+                const Text(
                   'ID: Моє',
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Button(
-                  name: Text('Редагування профілю'),
+                  name: const Text('Редагування профілю'),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -49,17 +49,17 @@ class MyProfilePage extends StatelessWidget {
                     );
                   },
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Button(
-                  name: Text('Редагування профілю'),
+                  name: const Text('Редагування профілю'),
                   onPressed: () {},
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Button(
-                  name: Text('Редагування профілю'),
+                  name: const Text('Редагування профілю'),
                   onPressed: () {},
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 LogOutButton(),
               ],
             ),
@@ -71,14 +71,13 @@ class MyProfilePage extends StatelessWidget {
 }
 
 class Button extends StatelessWidget {
-  final Widget name;
-  final VoidCallback? onPressed;
-
   const Button({
     Key? key,
     required this.name,
     this.onPressed,
   }) : super(key: key);
+  final Widget name;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +101,7 @@ class Button extends StatelessWidget {
             Expanded(
               child: Container(
                 height: AppDimensions.xl,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
@@ -113,10 +112,10 @@ class Button extends StatelessWidget {
                   children: [
                     const SizedBox(width: AppDimensions.xxxxs),
                     SvgPicture.asset(
-                  'assets/images/user_circle.svg',
-                  height: 30,
-                  width: 30,
-                ),
+                      'assets/images/user_circle.svg',
+                      height: 30,
+                      width: 30,
+                    ),
                     const SizedBox(width: AppDimensions.xxxxs),
                     DefaultTextStyle(
                       style: AppFonts.semiboldDark24,
@@ -154,7 +153,7 @@ class LogOutButton extends StatelessWidget {
           Expanded(
             child: Container(
               height: AppDimensions.xl,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.appGreen,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
@@ -165,17 +164,17 @@ class LogOutButton extends StatelessWidget {
                 children: [
                   const SizedBox(width: AppDimensions.xxxxs),
                   SvgPicture.asset(
-                  'assets/images/signout.svg',
-                  height: 30,
-                  width: 30,
-                ),
+                    'assets/images/signout.svg',
+                    height: 30,
+                    width: 30,
+                  ),
                   const SizedBox(width: AppDimensions.xxxxs),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Вийти з акаунту',
                           style: AppFonts.semiboldDark24,
                         ),

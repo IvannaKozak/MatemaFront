@@ -53,21 +53,21 @@ class MyStatisticState extends State<MyStatistic>
       appBar: AppBar(
         toolbarHeight: AppDimensions.xl,
         titleSpacing: 0.0,
-        title: const Align(
+        title: Align(
           alignment:
               Alignment.centerLeft, // for ios because there is in the middle
           child: Column(
             children: [
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: AppDimensions.xxxs,
                   ),
-                  Text(
+                  const Text(
                     'Статистика',
                     style: AppFonts.semiboldDark50,
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ],
