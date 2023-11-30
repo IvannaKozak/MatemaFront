@@ -73,4 +73,18 @@ class AppFonts {
     fontWeight: FontWeight.w500,
     color: AppColors.textColor,
   );
+
+  static const TextStyle semiboldDark15 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 15.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
+  static TextStyle semiboldDark24_ = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor.withOpacity(0.4),
+  );
 }
