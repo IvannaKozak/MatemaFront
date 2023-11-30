@@ -2,21 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/pages/home_page.dart';
+import 'package:matemafront/pages/confirm_email.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController passwordController = TextEditingController();
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController usernameController = TextEditingController();
+  TextEditingController first_nameController = TextEditingController();
+  TextEditingController last_nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController re_passwordController = TextEditingController();
 
-  Future<void> loginUser() async {
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+  
+
+  Future<void> registerUser() async {
+    
+    if (usernameController.text.isEmpty ||
+        first_nameController.text.isEmpty ||
+        last_nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        re_passwordController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -34,12 +46,34 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       return;
     }
-
+    if (passwordController.text != re_passwordController.text) {
+      // Показати помилку, якщо паролі не збігаються
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Помилка'),
+          content: Text('Упс..Паролі не збігаються.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ),
+      );
+      return;
+    }
     var response = await http.post(
-      Uri.parse('https://matema-dev-ncrzmugb6q-lm.a.run.app/auth/jwt/create/'),
+      Uri.parse('https://matema-dev-ncrzmugb6q-lm.a.run.app/auth/users/'),
       body: json.encode({
-        'password': passwordController.text,
         'username': usernameController.text,
+        'first_name': first_nameController.text,
+        'last_name': last_nameController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        're_password': re_passwordController.text,
       }),
       headers: {'Content-Type': 'application/json'},
     );
@@ -47,11 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
     // Читання відповіді
     var message = json.decode(response.body);
 
-    if (response.statusCode == 201 || response.statusCode == 200) {
+    if (response.statusCode == 201 || response.statusCode == 200 ) {
       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
-      );
+  context,
+  MaterialPageRoute(
+    builder: (context) => Confirm_email(username: usernameController.text),
+  ),
+);
+
     } else {
       // Показати діалогове вікно з помилкою від сервера
       showDialog(
@@ -107,11 +144,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: Align(
+                child: const Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -120,9 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.purple,
                         ),
                       ),
-                      const SizedBox(height: 5.0),
-                      const Text(
-                        'З поверненням, увійдіть у ваш обліковий запис',
+                      SizedBox(height: 5.0),
+                      Text(
+                        'Приємно познайомитися, \n створіть свій обліковий запис;)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -136,6 +173,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 35),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    'Нікнейм',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.m),
                 child: Column(
@@ -151,9 +204,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       child: TextField(
-                        controller: passwordController,
+                        controller: usernameController,
                         decoration: InputDecoration(
-                          hintText: 'Пароль',
+                          hintText: 'Нікнейм',
                           filled: true,
                           fillColor: AppColors.white,
                           border: InputBorder.none,
@@ -170,13 +223,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Ім`я',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
                     TextField(
-                      controller: usernameController,
+                      controller: first_nameController,
                       decoration: InputDecoration(
-                        hintText: 'Нікнейм',
+                        hintText: 'Ім`я',
                         filled: true,
                         fillColor: AppColors.white,
-                        border: OutlineInputBorder(
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.zero,
                             bottomLeft: Radius.zero,
@@ -186,18 +257,142 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: AppDimensions.t),
+                    const SizedBox(height: AppDimensions.xxxxs),
                     Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Забули пароль?',
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Прізвище',
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: AppColors.appPurple,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    TextField(
+                      controller: last_nameController,
+                      decoration: InputDecoration(
+                        hintText: 'Прізвище',
+                        filled: true,
+                        fillColor: AppColors.white,
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Email',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        filled: true,
+                        fillColor: AppColors.white,
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Пароль',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    TextField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        hintText: 'Пароль',
+                        filled: true,
+                        fillColor: AppColors.white,
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.xxxxs),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Повторити пароль',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    TextField(
+                      controller: re_passwordController,
+                      decoration: InputDecoration(
+                        hintText: 'Повторити пароль',
+                        filled: true,
+                        fillColor: AppColors.white,
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
@@ -205,14 +400,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
+              const SizedBox(height: AppDimensions.xxxxs),
               Container(
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: 370,
                 height: 80,
                 child: ElevatedButton(
-                  onPressed: loginUser,
+                  onPressed: registerUser,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
+                    primary: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -225,7 +421,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   child: const Text(
-                    'Увійти',
+                    'Зареєстуватися',
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.bold,
@@ -238,14 +434,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -256,7 +452,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -281,9 +477,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color(0xFF6B7280),
-                    backgroundColor: Colors.white,
-                    //padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                    primary: Colors.white,
+                    onPrimary: Color(0xFF6B7280),
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.zero,
@@ -313,7 +508,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color(0xFF6B7280), backgroundColor: Colors.white,
+                    primary: Colors.white,
+                    onPrimary: Color(0xFF6B7280),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -333,7 +529,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {},
                 child: RichText(
                   text: const TextSpan(
-                    text: 'У вас ще немає облікового запису? ',
+                    text: 'У вас вже є обліковий запис? ',
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 15,
@@ -341,7 +537,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Створіть його.',
+                        text: 'Увійти',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.bold,
@@ -363,9 +559,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
 void main() {
   runApp(MaterialApp(
-    home: LoginScreen(),
+    home: RegisterScreen(),
     routes: {
-      '/MyHomePage': (context) => MyHomePage(),
+      '/confirmEmail': (context) => Confirm_email(username: "usernameController"),
     },
   ));
 }
