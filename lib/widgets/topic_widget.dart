@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/widgets/choose_widget.dart';
+import 'package:matemafront/widgets/switch_circle.dart';
 
 class TopicWidget extends StatelessWidget {
   const TopicWidget({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class TopicWidget extends StatelessWidget {
                 ),
               ),
               alignment: Alignment.center,
-              child: const ChooseWidget(),
+              child: SwitchCircleWidget(),
             ),
           ],
         ),

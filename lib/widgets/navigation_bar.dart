@@ -26,8 +26,8 @@ class NavPageState extends State<MyNavigationBar> {
     MyProfilePage(),
     const MyStatistic(),
     const MyHomePage(),
-    // const MyAdminPage(),
     // RegisterScreen(),
+    // const NoInternetPage(),
     Container(
       child: const Text(
         'Рейтинг',

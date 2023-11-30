@@ -39,6 +39,13 @@ class AppFonts {
     color: AppColors.textColor,
   );
 
+  static const TextStyle semiboldDark18 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 18.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textColor,
+  );
+
   static const TextStyle semiboldDark20 = TextStyle(
     fontFamily: 'Inter-SemiBold',
     fontSize: 20.0,
