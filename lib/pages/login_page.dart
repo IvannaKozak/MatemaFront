@@ -107,11 +107,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -120,8 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.purple,
                         ),
                       ),
-                      SizedBox(height: 5.0),
-                      Text(
+                      const SizedBox(height: 5.0),
+                      const Text(
                         'З поверненням, увійдіть у ваш обліковий запис',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -212,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -238,14 +238,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -256,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -281,8 +281,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     //padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
@@ -313,8 +313,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280), backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(

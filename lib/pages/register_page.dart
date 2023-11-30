@@ -39,11 +39,11 @@ class RegisterScreen extends StatelessWidget {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -194,8 +194,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppDimensions.xxxxs),
-
-
               Container(
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: 370,
@@ -225,13 +223,11 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-
-              
               const SizedBox(height: AppDimensions.xxxs),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+
                   Expanded(
                     child: Divider(
                       color: Colors.grey,
