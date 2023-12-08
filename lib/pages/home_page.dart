@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // The tasks are loaded, build your widgets using snapshot.data
             return RawScrollbar(
               padding:
-                  const EdgeInsets.only(top: 0, bottom: 0, left: 0, right: 11),
+                  const EdgeInsets.only(top: 0, bottom: 5, left: 0, right: 11),
               thumbVisibility: true,
               thickness: 6,
               radius: const Radius.circular(20),
@@ -83,8 +83,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   Task task = snapshot.data![index];
-                  return TaskWidget(
-                      task: task); // Assuming TaskWidget takes a Task object
+                  return Column(
+                    // Wrap TaskWidget with a Column
+                    children: [
+                      if (index == 0) const SizedBox(height: 10),
+                      TaskWidget(task: task), // Your existing task widget
+                      const SizedBox(
+                          height:
+                              10), // SizedBox for spacing between task items
+                    ],
+                  );
                 },
               ),
             );

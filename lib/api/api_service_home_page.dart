@@ -11,7 +11,8 @@ class ApiService {
     final response = await http.get(Uri.parse('$baseUrl/manager/task/all/'));
 
     if (response.statusCode == 200) {
-      List<dynamic> tasksJson = json.decode(response.body);
+      String utf8Body = utf8.decode(response.bodyBytes);
+      List<dynamic> tasksJson = json.decode(utf8Body);
       List<Task> tasks =
           tasksJson.map((taskJson) => Task.fromJson(taskJson)).toList();
       return tasks;
@@ -24,7 +25,8 @@ class ApiService {
     final response = await http.get(Uri.parse('$baseUrl/manager/theme/all/'));
 
     if (response.statusCode == 200) {
-      List<dynamic> themesJson = json.decode(response.body);
+      String utf8Body = utf8.decode(response.bodyBytes);
+      List<dynamic> themesJson = json.decode(utf8Body);
       List<Topic> themes =
           themesJson.map((themeJson) => Topic.fromJson(themeJson)).toList();
       return themes;

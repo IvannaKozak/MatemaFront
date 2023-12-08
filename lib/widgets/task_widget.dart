@@ -21,21 +21,20 @@ class TaskWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Expanded(
-        child: Container(
-          // height: AppDimensions.xl,
-          decoration: const BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomRight: Radius.circular(20),
           ),
+        ),
+        child: IntrinsicHeight(
           child: Row(
             children: [
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(AppDimensions.xxxs),
+                  padding: const EdgeInsets.all(AppDimensions.xxxxs),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
