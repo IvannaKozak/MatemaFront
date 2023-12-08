@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/models/theme_model.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 import 'package:matemafront/widgets/switch_circle.dart';
 
 class TopicWidget extends StatelessWidget {
-  const TopicWidget({Key? key}) : super(key: key);
+  const TopicWidget({Key? key, required this.topic}) : super(key: key);
+  final Topic topic;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +39,8 @@ class TopicWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Задачі на логіку',
+                  Text(
+                    topic.name,
                     style: AppFonts.semiboldDark24,
                   ),
                 ],
