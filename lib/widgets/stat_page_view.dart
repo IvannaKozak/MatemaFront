@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matemafront/pages/stat_done.dart';
-import 'package:matemafront/pages/stat_not_done.dart';
+import 'package:matemafront/pages/stat_failed.dart';
 import 'package:matemafront/pages/overall_stat.dart';
 
 class MyPageView extends StatelessWidget {
@@ -22,6 +22,6 @@ class MyPageView extends StatelessWidget {
         const StatDone(),
         StatNotDone(),
       ],
-    );
+    );  
   }
 }

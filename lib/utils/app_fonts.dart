@@ -87,4 +87,13 @@ class AppFonts {
     fontWeight: FontWeight.w500,
     color: AppColors.textColor.withOpacity(0.4),
   );
+
+  static TextStyle semibold15({Color? color}) {
+    return TextStyle(
+      fontFamily: 'Inter-SemiBold',
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: color ?? Colors.black,
+    );
+  }
 }

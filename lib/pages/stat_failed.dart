@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 
-import 'package:matemafront/widgets/completed_task_for_statview.dart';
-import 'package:matemafront/api/api_service_stat_done.dart';
+import 'package:matemafront/widgets/failed_task_for_statview.dart';
+import 'package:matemafront/api/api_service_stat_failed.dart';
 
-class StatDone extends StatefulWidget {
-  const StatDone({Key? key}) : super(key: key);
+class StatNotDone extends StatefulWidget {
+  const StatNotDone({Key? key}) : super(key: key);
 
   @override
-  _StatDoneState createState() => _StatDoneState();
+  _StatNotDoneState createState() => _StatNotDoneState();
 }
 
-class _StatDoneState extends State<StatDone> {
-  List<dynamic> completedTasks = [];
-  final StatDoneService _completedTasksService = StatDoneService();
+class _StatNotDoneState extends State<StatNotDone> {
+  List<dynamic> notCompletedTasks = [];
+  final StatNotDoneService _notCompletedTasksService = StatNotDoneService();
 
-  Future<void> fetchCompletedTasks() async {
+  Future<void> fetchNotCompletedTasks() async {
     try {
-      List<dynamic> tasks = await _completedTasksService.fetchCompletedTasks();
+      List<dynamic> tasks = await _notCompletedTasksService.fetchNotCompletedTasks();
       setState(() {
-        completedTasks = tasks;
+        notCompletedTasks = tasks;
       });
     } catch (error) {
       print('Помилка отримання даних: $error');
@@ -31,7 +31,7 @@ class _StatDoneState extends State<StatDone> {
   @override
   void initState() {
     super.initState();
-    fetchCompletedTasks();
+    fetchNotCompletedTasks();
   }
 
   @override
@@ -56,13 +56,13 @@ class _StatDoneState extends State<StatDone> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: completedTasks.length,
+              itemCount: notCompletedTasks.length,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    CompletedTaskWidget(
-                      taskName: completedTasks[index]['task_id'],
-                      themeName: completedTasks[index]['theme_name'],
+                    FailedTaskWidget(
+                      taskName: notCompletedTasks[index]['task_id'],
+                      themeName: notCompletedTasks[index]['theme_name'],
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
                   ],
