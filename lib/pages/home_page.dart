@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: AppColors.verylightBackground,
       body: FutureBuilder<List<Task>>(
         // Using FutureBuilder to handle async data
-        future: _apiService.getTasks(),
+        future: _apiService.getTasks(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
