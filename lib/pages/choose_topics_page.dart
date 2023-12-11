@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matemafront/api/api_service_home_page.dart';
+import 'package:matemafront/models/theme_model.dart';
 import 'package:matemafront/widgets/how_many_tasks.dart';
 import 'package:matemafront/widgets/save_changes.dart';
 import 'package:matemafront/widgets/score_bar.dart';
@@ -16,11 +18,14 @@ class MyChoicePage extends StatefulWidget {
 }
 
 class _MyChoicePageState extends State<MyChoicePage> {
+  final ApiService _apiService = ApiService();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColors.verylightBackground,
     ));
+
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: AppDimensions.xl,
@@ -68,35 +73,34 @@ class _MyChoicePageState extends State<MyChoicePage> {
               height: AppDimensions.xxxxs,
             ),
             Expanded(
-              child: RawScrollbar(
-                padding: const EdgeInsets.only(
-                    top: 0, bottom: 0, left: 0, right: 11),
-                thumbVisibility: true,
-                thickness: 6,
-                radius: const Radius.circular(20),
-                thumbColor: AppColors.textColor,
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount:
-                      16, // 8 TopicWidgets + 8 SizedBox widgets = 16; but since they are paired together, we need only 8 iterations
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 0) {
-                      return const SizedBox(
-                        height: AppDimensions.xxxs,
-                      );
-                    }
-
-                    // Every odd index is a TopicWidget
-                    if (index.isOdd) {
-                      return const TopicWidget();
-                    }
-
-                    // Every even index (excluding the first one) is a SizedBox
-                    return const SizedBox(
-                      height: AppDimensions.xxxs,
+              child: FutureBuilder<List<Topic>>(
+                future: _apiService.getTopics(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No data found'));
+                  } else {
+                    return RawScrollbar(
+                      padding: const EdgeInsets.only(
+                          top: 0, bottom: 0, left: 0, right: 11),
+                      thumbVisibility: true,
+                      thickness: 6,
+                      radius: const Radius.circular(20),
+                      thumbColor: AppColors.textColor,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          Topic topic = snapshot.data![index];
+                          return TopicWidget(topic: topic);
+                        },
+                      ),
                     );
-                  },
-                ),
+                  }
+                },
               ),
             ),
             const SaveChangesWidget(),

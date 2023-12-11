@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/pages/login_page.dart';
 import 'package:matemafront/widgets/navigation_bar.dart';
 
 void main() {
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyNavigationBar(),
+      // home: const MyNavigationBar(),
+      home: LoginScreen(),
     );
   }
 }
