@@ -117,10 +117,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             style: AppFonts.semiboldDark50,
           ),
         ),
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.verylightBackground,
         elevation: AppDimensions.t,
       ),
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: AppColors.verylightBackground,
       body: ListView(
         children: [
           Column(
@@ -160,7 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           fontSize: 18,
                           color: Colors.black,
                         ),
@@ -207,15 +207,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           filled: true,
                           fillColor: AppColors.white,
                           border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
+                          // enabledBorder: OutlineInputBorder(
+                          //   borderSide: BorderSide.none,
+                          //   borderRadius: BorderRadius.only(
+                          //     topLeft: Radius.zero,
+                          //     bottomLeft: Radius.zero,
+                          //     topRight: Radius.circular(10),
+                          //     bottomRight: Radius.circular(10),
+                          //   ),
+                          // ),
                         ),
                       ),
                     ),
@@ -554,12 +554,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: RegisterScreen(),
-    routes: {
-      '/confirmEmail': (context) =>
-          Confirm_email(username: "usernameController"),
-    },
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: RegisterScreen(),
+//     routes: {
+//       '/confirmEmail': (context) =>
+//           Confirm_email(username: 'usernameController'),
+//     },
+//   ));
+// }

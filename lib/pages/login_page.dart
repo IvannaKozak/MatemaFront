@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matemafront/api/secure_storage_service.dart';
+import 'package:matemafront/pages/register_page_logic.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
@@ -92,10 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
             style: AppFonts.semiboldDark50,
           ),
         ),
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.verylightBackground,
         elevation: AppDimensions.t,
       ),
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: AppColors.verylightBackground,
       body: ListView(
         children: [
           Column(
@@ -131,11 +132,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 5.0),
                       const Text(
-                        'З поверненням, увійдіть у ваш обліковий запис',
+                        'З поверненням! Увійдіть у ваш обліковий запис',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           fontSize: 18,
                           color: Colors.black,
                         ),
@@ -147,45 +148,55 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 35),
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.m),
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        controller: passwordController,
-                        decoration: const InputDecoration(
-                          hintText: 'Пароль',
-                          filled: true,
-                          fillColor: AppColors.white,
-                          border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                        ),
+                child: TextField(
+                  controller: usernameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Нікнейм',
+                    filled: true,
+                    fillColor: AppColors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.zero,
+                        bottomLeft: Radius.zero,
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
                       ),
                     ),
-                    const SizedBox(height: AppDimensions.xxxxs),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColors.appPurple, width: 2.0),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.zero,
+                        bottomLeft: Radius.zero,
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppDimensions.xxxxs),
+              Container(
+                margin: const EdgeInsets.only(right: AppDimensions.m),
+                child: Column(
+                  children: [
                     TextField(
-                      controller: usernameController,
+                      controller: passwordController,
                       decoration: const InputDecoration(
-                        hintText: 'Нікнейм',
+                        hintText: 'Пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: AppColors.appPurple, width: 2.0),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.zero,
                             bottomLeft: Radius.zero,
@@ -340,7 +351,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: AppDimensions.xxs),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+                  );
+                },
                 child: RichText(
                   text: const TextSpan(
                     text: 'У вас ще немає облікового запису? ',

@@ -29,15 +29,20 @@ class ApiService {
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       String utf8Body = utf8.decode(response.bodyBytes);
       List<dynamic> tasksJson = json.decode(utf8Body);
       List<Task> tasks =
           tasksJson.map((taskJson) => Task.fromJson(taskJson)).toList();
       return tasks;
-    } else {
-      throw Exception('Failed to load tasks');
+    } else if (response.statusCode == 401 || response.statusCode == 403) {
+      print(response.statusCode);
     }
+    // else {
+    //   print(response.statusCode);
+    //   throw Exception('Failed to load tasks');
+    // }
+    return [];
   }
 
   Future<List<Topic>> getTopics() async {
