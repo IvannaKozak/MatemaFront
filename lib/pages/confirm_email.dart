@@ -122,7 +122,7 @@ class Confirm_email extends StatelessWidget {
                   confirmUser(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 125, 86, 165),
+                  backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: const RoundedRectangleBorder(
