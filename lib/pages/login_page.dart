@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/api/secure_storage_service.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 import 'package:matemafront/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:matemafront/widgets/navigation_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -48,9 +51,15 @@ class _LoginScreenState extends State<LoginScreen> {
     var message = json.decode(response.body);
 
     if (response.statusCode == 201 || response.statusCode == 200) {
+      String accessToken = message['access'];
+      String refreshToken = message['refresh'];
+
+      await SecureStorageService().storeToken('accessToken', accessToken);
+      await SecureStorageService().storeToken('refreshToken', refreshToken);
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyNavigationBar()),
       );
     } else {
       // Показати діалогове вікно з помилкою від сервера
@@ -362,11 +371,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: LoginScreen(),
-    routes: {
-      '/MyHomePage': (context) => const MyHomePage(),
-    },
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: LoginScreen(),
+//     routes: {
+//       '/navPage': (context) => const MyNavigationBar(),
+//     },
+//   ));
+// }
