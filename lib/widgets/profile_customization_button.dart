@@ -8,16 +8,19 @@ class Button extends StatelessWidget {
   const Button({
     Key? key,
     required this.name,
+    required this.svgPath,
     this.onPressed,
   }) : super(key: key);
+
   final Widget name;
+  final String svgPath;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: AppDimensions.xxs),
-      width: MediaQuery.of(context).size.width * 0.91,
+      // width: MediaQuery.of(context).size.width * 0.91,
       height: 75,
       decoration: BoxDecoration(
         boxShadow: [
@@ -46,7 +49,7 @@ class Button extends StatelessWidget {
                   children: [
                     const SizedBox(width: AppDimensions.xxxxs),
                     SvgPicture.asset(
-                      'assets/images/user_circle.svg',
+                      svgPath,
                       height: 30,
                       width: 30,
                     ),
@@ -55,6 +58,16 @@ class Button extends StatelessWidget {
                       style: AppFonts.semiboldDark24,
                       child: name,
                     ),
+                    const Spacer(),
+                    Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: SvgPicture.asset(
+                        'assets/images/expand_right.svg',
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    const SizedBox(width: 5,)
                   ],
                 ),
               ),

@@ -20,7 +20,7 @@ class MyPageView extends StatelessWidget {
       children: [
         OverallStats(),
         const StatDone(),
-        StatNotDone(),
+        const StatFailed(),
       ],
     );  
   }

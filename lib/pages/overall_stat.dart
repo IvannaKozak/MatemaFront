@@ -24,7 +24,7 @@ class _OverallStatsState extends State<OverallStats> {
 
   void loadData() async {
     try {
-      await chartData.fetchChartData();
+      await chartData.fetchChartData(context);
       setState(() {
         isLoading = false;
       });
@@ -43,7 +43,7 @@ class _OverallStatsState extends State<OverallStats> {
       hasError = false;
     });
     try {
-      await chartData.fetchChartData();
+      await chartData.fetchChartData(context);
       setState(() {
         isLoading = false;
       });

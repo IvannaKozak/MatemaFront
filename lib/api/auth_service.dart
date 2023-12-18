@@ -10,7 +10,7 @@ class AuthService {
   final String _baseUrl = 'https://matema-dev-ncrzmugb6q-lm.a.run.app';
 
   // Function to verify and refresh the access token
-  Future<void> verifyAndRefreshToken(BuildContext context) async {
+  Future<bool> verifyAndRefreshToken(BuildContext context) async {
     print('Verifying access token.');
     var accessToken = await SecureStorageService().getToken('accessToken');
 
@@ -18,8 +18,10 @@ class AuthService {
       // If access token is not valid, try to refresh it
       print('Access token is invalid, refreshing token.');
       await _refreshAccessToken(context);
+      return true;
     } else {
       print('Access token is valid.');
+      return true;
     }
   }
 

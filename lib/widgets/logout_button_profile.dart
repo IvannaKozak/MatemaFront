@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
+
+import 'package:matemafront/pages/welcome_screen.dart';
+import 'package:matemafront/api/secure_storage_service.dart';
 
 class LogOutButton extends StatelessWidget {
   @override
@@ -15,30 +19,39 @@ class LogOutButton extends StatelessWidget {
             return AlertDialog(
               backgroundColor: AppColors.lightBackground,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  side: const BorderSide(width: 5, color: AppColors.appGreen)),
+                borderRadius: BorderRadius.circular(20.0),
+                side: const BorderSide(width: 5, color: AppColors.appPurple),
+              ),
               title: const Text('Вихід з акаунту', style: AppFonts.boldDark26),
               content: const Text(
                 'Ви впевнені, що хочете вийти з акаунту?',
                 style: AppFonts.semiboldDark15,
               ),
+              actionsAlignment: MainAxisAlignment.center,
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text(
+                  child: Text(
                     'Скасувати',
-                    style: AppFonts.semiboldDark15,
+                    style: AppFonts.bold15(color: AppColors.textColor),
                   ),
                 ),
                 TextButton(
                   onPressed: () {
+                    SecureStorageService().deleteToken('refreshToken');
+                    SecureStorageService().deleteToken('accessToken');
                     Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const WelcomeScreen(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Підтвердити',
-                    style: AppFonts.semibold15(color: Colors.red),
+                    style: AppFonts.bold15(color: Colors.red),
                   ),
                 ),
               ],
@@ -65,7 +78,7 @@ class LogOutButton extends StatelessWidget {
               child: Container(
                 height: AppDimensions.xl,
                 decoration: const BoxDecoration(
-                  color: Colors.red,
+                  color: AppColors.appPurple,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
                     bottomRight: Radius.circular(20),
@@ -78,6 +91,7 @@ class LogOutButton extends StatelessWidget {
                       'assets/images/signout.svg',
                       height: 30,
                       width: 30,
+                      color: AppColors.verylightBackground,
                     ),
                     const SizedBox(width: AppDimensions.xxxxs),
                     const Expanded(
@@ -87,7 +101,7 @@ class LogOutButton extends StatelessWidget {
                         children: [
                           Text(
                             'Вийти з акаунту',
-                            style: AppFonts.semiboldDark24,
+                            style: AppFonts.semiboldWhite24,
                           ),
                         ],
                       ),

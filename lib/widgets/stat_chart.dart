@@ -5,9 +5,14 @@ import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
 import 'package:matemafront/models/week_chart_data_model.dart';
-import 'package:matemafront/data/statistic_chart_data.dart';
+import 'package:matemafront/api/api_service_week_chart.dart';
 
-class MyBarChart extends StatelessWidget {
+class MyBarChart extends StatefulWidget {
+  @override
+  _MyBarChartState createState() => _MyBarChartState();
+}
+
+class _MyBarChartState extends State<MyBarChart> {
   final double barWidth = 30;
 
   SideTitles _leftTitles() {
@@ -52,7 +57,7 @@ class MyBarChart extends StatelessWidget {
   Widget build(BuildContext context) => BarChart(
         BarChartData(
           alignment: BarChartAlignment.center,
-          maxY: 6,
+          maxY: 8,
           minY: 0,
           groupsSpace: 12,
           titlesData: FlTitlesData(

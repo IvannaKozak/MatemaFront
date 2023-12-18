@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class MyCustomAcc extends StatefulWidget {
   @override
@@ -15,23 +18,106 @@ class _MyCustomAccState extends State<MyCustomAcc> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   File? _image;
-
-  void _saveChanges() {
-    final String newName = _nameController.text;
-    final String newPassword = _passwordController.text;
-
-    print('New Name: $newName');
-    print('New Password: $newPassword');
-  }
+  final ImagePicker _picker = ImagePicker();
+  final String baseUrl = 'https://matema-dev-ncrzmugb6q-lm.a.run.app';
 
   Future<void> _getImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
       });
     }
+  }
+
+  Future<void> _changeProfilePicture() async {
+    if (_image != null) {
+      try {
+        var request = http.MultipartRequest(
+          'POST',
+          Uri.parse('$baseUrl/user/photo/'),
+        );
+
+        request.files.add(await http.MultipartFile.fromPath(
+          'file',
+          _image!.path,
+        ));
+
+        var response = await request.send();
+        if (response.statusCode == 200) {
+          // Profile picture changed successfully
+          // You may update UI or show a success message here
+        } else {
+          // Handle error
+        }
+      } catch (e) {
+        // Handle exception
+      }
+    }
+  }
+
+  Future<void> _updateUserName() async {
+    final String newUsername = _nameController.text;
+    final String currentPassword = _passwordController.text;
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/auth/users/set_username/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'current_password': currentPassword,
+          'new_username': newUsername,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Username updated successfully
+        // You may update UI or show a success message here
+      } else {
+        // Handle error
+      }
+    } catch (e) {
+      // Handle exception
+    }
+  }
+
+  Future<void> _updatePassword() async {
+    final String newPassword = _passwordController.text;
+    final String currentPassword = _passwordController.text;
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/auth/users/set_password/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'new_password': newPassword,
+          're_new_password':
+              newPassword, // Assuming re-entering the same password
+          'current_password': currentPassword,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Password updated successfully
+        // You may update UI or show a success message here
+      } else {
+        // Handle error
+      }
+    } catch (e) {
+      // Handle exception
+    }
+  }
+
+  Future<void> _saveChanges() async {
+    await _changeProfilePicture();
+    // await _updateUserName();
+    // await _updatePassword();
+    // After all changes, perform further actions if needed
+    Navigator.pop(context);
   }
 
   @override
@@ -79,9 +165,7 @@ class _MyCustomAccState extends State<MyCustomAcc> {
             children: [
               SizedBox(height: 0.05 * MediaQuery.of(context).size.height),
               GestureDetector(
-                onTap: () {
-                  _getImage();
-                },
+                onTap: _getImage,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

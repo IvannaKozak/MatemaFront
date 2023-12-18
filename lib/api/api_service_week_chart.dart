@@ -1,33 +1,43 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:matemafront/api/api_service_fetch_user_data.dart';
 import 'package:matemafront/models/week_chart_data_model.dart';
-import 'package:matemafront/api/api_service_fetch_username.dart';
+import 'package:matemafront/api/secure_storage_service.dart';
 
 class ChartData {
   static int interval = 2;
   static List<Data> barData = [];
   final String baseUrl = 'https://matema-dev-ncrzmugb6q-lm.a.run.app';
 
-  Future<void> fetchChartData() async {
-    Future<String> username = fetchUsername();
-    final response = await http.get(Uri.parse('$baseUrl/statistic/week/$username'));
+  SecureStorageService secureStorageService = SecureStorageService();
 
-    if (response.statusCode == 200) {
-      List<Map<String, dynamic>> jsonData =
-          List<Map<String, dynamic>>.from(json.decode(response.body));
+  Future<void> fetchChartData(BuildContext context) async {
+    try {
+      String? username = await fetchUsername(context); 
 
-      barData = jsonData.map((data) {
-        DateTime date = DateTime.parse(data['day']);
-        int id = date.weekday;
+      final response = await http.get(
+        Uri.parse('$baseUrl/statistic/task/week/test_ivanka'),
+      );
 
-        return Data(
-          id: id,
-          y: data['count'].toDouble(),
-        );
-      }).toList();
-    } else {
-      throw Exception('Request failed with status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        List<dynamic> jsonData = json.decode(response.body);
+        
+        barData = jsonData.map((data) {
+          DateTime date = DateTime.parse(data['day']);
+          int id = date.weekday;
+
+          return Data(
+            id: id,
+            y: data['count'].toDouble(),
+          );
+        }).toList();
+      } else {
+        throw Exception('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error fetching chart data: $e');
     }
   }
 }
