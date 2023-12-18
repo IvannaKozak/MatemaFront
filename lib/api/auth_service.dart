@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:matemafront/api/secure_storage_service.dart';
 import 'package:matemafront/pages/login_page.dart';
-import 'package:matemafront/widgets/navigation_bar.dart';
 
 class AuthService {
   final String _baseUrl = 'https://matema-dev-ncrzmugb6q-lm.a.run.app';

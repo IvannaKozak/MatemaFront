@@ -4,7 +4,6 @@ import 'package:matemafront/pages/register_page_logic.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -20,21 +20,21 @@ class MyNavigationBar extends StatefulWidget {
 }
 
 class NavPageState extends State<MyNavigationBar> {
-  late final List<Widget> _children = [
-    MyProfilePage(),
-    const MyStatistic(),
-    const MyHomePage(),
-    // RegisterScreen(),
-    // const NoInternetPage(),
-    Container(
-      child: const Text(
-        'Рейтинг',
-        style: AppFonts.semiboldDark50,
-      ),
-      alignment: Alignment.center,
-    ),
-    const MyChoicePage(),
-  ];
+  // late final List<Widget> _children = [
+  //   MyProfilePage(),
+  //   const MyStatistic(),
+  //   const MyHomePage(),
+  //   // RegisterScreen(),
+  //   // const NoInternetPage(),
+  //   Container(
+  //     child: const Text(
+  //       'Рейтинг',
+  //       style: AppFonts.semiboldDark50,
+  //     ),
+  //     alignment: Alignment.center,
+  //   ),
+  //   const MyChoicePage(),
+  // ];
 
   void onTabTapped(int index) {
     if (mounted) {

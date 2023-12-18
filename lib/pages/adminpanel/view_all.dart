@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matemafront/widgets/log_out_button.dart';
 import 'package:matemafront/widgets/plus_item_widget.dart';
-import 'package:matemafront/widgets/task_widget.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/widgets/week_task_widget.dart';
 
 class MyAdminPage extends StatefulWidget {
   const MyAdminPage({super.key});
