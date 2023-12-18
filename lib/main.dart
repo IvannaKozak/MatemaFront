@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matemafront/pages/login_page.dart';
+import 'package:matemafront/pages/result_bad_page.dart';
+import 'package:matemafront/pages/result_good_page.dart';
 import 'package:matemafront/widgets/navigation_bar.dart';
 
 void main() {
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyNavigationBar(),
       home: LoginScreen(),
+      // home: const BadResultPage(),
     );
   }
 }

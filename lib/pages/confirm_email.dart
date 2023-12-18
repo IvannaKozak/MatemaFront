@@ -10,13 +10,14 @@ class Confirm_email extends StatelessWidget {
   Confirm_email({Key? key, required this.username}) : super(key: key);
 
   Future<void> confirmUser(BuildContext context) async {
+    print(username);
     var response = await http.get(
       Uri.parse(
           'https://matema-dev-ncrzmugb6q-lm.a.run.app/user/check-user-active/$username/'),
       headers: {'Content-Type': 'application/json'},
     );
 
-    if (response.statusCode == 401) {
+    if (response.statusCode == 403) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -36,7 +37,7 @@ class Confirm_email extends StatelessWidget {
     }
 
     if (response.statusCode == 200) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => LoginScreen(),
@@ -121,7 +122,7 @@ class Confirm_email extends StatelessWidget {
                   confirmUser(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 125, 86, 165),
+                  backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: const RoundedRectangleBorder(
@@ -150,11 +151,11 @@ class Confirm_email extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: Confirm_email(username: "yourUsername"),
-    routes: {
-      '/Login': (context) => LoginScreen(),
-    },
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: Confirm_email(username: "yourUsername"),
+//     routes: {
+//       '/Login': (context) => LoginScreen(),
+//     },
+//   ));
+// }
