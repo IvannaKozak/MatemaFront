@@ -1,11 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:matemafront/utils/app_colors.dart';
-import 'package:matemafront/utils/app_dimensions.dart';
-import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/pages/customize_accaount_page.dart';
 
-class MyProfilePage extends StatelessWidget {
+import 'package:matemafront/utils/app_colors.dart';
+import 'package:matemafront/utils/app_fonts.dart';
+
+import 'package:matemafront/api/api_service_fetch_user_data.dart';
+
+import 'package:matemafront/pages/customize_account_page.dart';
+import 'package:matemafront/pages/language_change_page.dart';
+import 'package:matemafront/pages/technical_support_page.dart';
+
+import 'package:matemafront/widgets/logout_button_profile.dart';
+import 'package:matemafront/widgets/profile_customization_button.dart';
+
+class MyProfilePage extends StatefulWidget {
+  @override
+  _MyProfilePageState createState() => _MyProfilePageState();
+}
+
+class _MyProfilePageState extends State<MyProfilePage> {
+  Map<String, String> profileInfo = {};
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfileInformation(context);
+  }
+
+  Future<void> loadProfileInformation(context) async {
+    try {
+      Map<String, String> info = await getProfileInformation(context);
+      setState(() {
+        profileInfo = info;
+      });
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<Map<String, String>> getProfileInformation(
+      BuildContext context) async {
+    try {
+      UserProfile userProfile = await fetchProfileUsernameAndFullname(context);
+      String firstName = userProfile.firstName;
+      String lastName = userProfile.lastName;
+      String username = userProfile.username;
+
+      Map<String, String> info = {
+        'firstName': firstName,
+        'lastName': lastName,
+        'username': username,
+      };
+
+      return info;
+    } catch (error) {
+      print('Error: $error');
+      return {};
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,176 +69,94 @@ class MyProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.appPurple,
-                      width: 3,
-                    ),
-                  ),
-                  child: const CircleAvatar(
-                    backgroundColor: AppColors.appGreen,
-                    radius: 100,
-                  ),
+                FutureBuilder(
+                  future: fetchProfileImage(context),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: AppColors.appPurple,
+                          width: 4,
+                        ),
+                      ),
+                      child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage:
+                            snapshot.connectionState == ConnectionState.waiting
+                                ? null
+                                : snapshot.hasError
+                                    ? null
+                                    : snapshot.hasData
+                                        ? NetworkImage(snapshot.data!)
+                                        : null,
+                        child: snapshot.hasError
+                            ? Icon(
+                                Icons.person_off,
+                                size: 80,
+                              )
+                            : null,
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 9),
-                const Text(
-                  'Я',
+                Text(
+                  '${profileInfo['firstName']} ${profileInfo['lastName']}',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  'ID: Моє',
+                Text(
+                  '${profileInfo['username']}',
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 25),
                 Button(
-                  name: const Text('Редагування профілю'),
+                  name: const Text(
+                    'Редагування профілю',
+                    style: AppFonts.semiboldDark20,
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MyCustomAcc()),
                     );
                   },
+                  svgPath: 'assets/images/user_circle.svg',
                 ),
                 const SizedBox(height: 15),
                 Button(
-                  name: const Text('Редагування профілю'),
-                  onPressed: () {},
+                  name: const Text(
+                    'Зміна мови',
+                    style: AppFonts.semiboldDark20,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LanguageChange()),
+                    );
+                  },
+                  svgPath: 'assets/images/paper.svg',
                 ),
                 const SizedBox(height: 15),
                 Button(
-                  name: const Text('Редагування профілю'),
-                  onPressed: () {},
+                  name: const Text(
+                    'Тех. підтримка',
+                    style: AppFonts.semiboldDark20,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TechSupport()),
+                    );
+                  },
+                  svgPath: 'assets/images/info.svg',
                 ),
+                const SizedBox(height: 15),
+                const Divider(endIndent: BorderSide.strokeAlignCenter),
                 const SizedBox(height: 15),
                 LogOutButton(),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Button extends StatelessWidget {
-  const Button({
-    Key? key,
-    required this.name,
-    this.onPressed,
-  }) : super(key: key);
-  final Widget name;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: AppDimensions.xxs),
-      width: MediaQuery.of(context).size.width * 0.91,
-      height: 75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: AppDimensions.xl,
-                decoration: const BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: AppDimensions.xxxxs),
-                    SvgPicture.asset(
-                      'assets/images/user_circle.svg',
-                      height: 30,
-                      width: 30,
-                    ),
-                    const SizedBox(width: AppDimensions.xxxxs),
-                    DefaultTextStyle(
-                      style: AppFonts.semiboldDark24,
-                      child: name,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LogOutButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: AppDimensions.xxs),
-      width: MediaQuery.of(context).size.width * 0.91,
-      height: 75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: AppDimensions.xl,
-              decoration: const BoxDecoration(
-                color: AppColors.appGreen,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-              ),
-              child: Row(
-                children: [
-                  const SizedBox(width: AppDimensions.xxxxs),
-                  SvgPicture.asset(
-                    'assets/images/signout.svg',
-                    height: 30,
-                    width: 30,
-                  ),
-                  const SizedBox(width: AppDimensions.xxxxs),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Вийти з акаунту',
-                          style: AppFonts.semiboldDark24,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 60,
-                    alignment: Alignment.center,
-                  ),
-                ],
-              ),
             ),
           ),
         ],

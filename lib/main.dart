@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:matemafront/pages/login_page.dart';
-import 'package:matemafront/pages/result_bad_page.dart';
-import 'package:matemafront/pages/result_good_page.dart';
-import 'package:matemafront/widgets/navigation_bar.dart';
+import 'package:flutter/services.dart';
+
+import 'package:matemafront/pages/welcome_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MyApp()); //the app can only be used in a portrait position
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: const MyNavigationBar(),
-      home: LoginScreen(),
-      // home: const BadResultPage(),
+      home: const WelcomeScreen(),
     );
   }
 }

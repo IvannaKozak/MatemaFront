@@ -1,5 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
+
+import 'package:google_fonts/google_fonts.dart';  
 
 class AppFonts {
   AppFonts._();
@@ -87,4 +91,30 @@ class AppFonts {
     fontWeight: FontWeight.w500,
     color: AppColors.textColor.withOpacity(0.4),
   );
+
+  static TextStyle semibold15({Color? color}) {
+    return TextStyle(
+      fontFamily: 'Inter-SemiBold',
+      fontSize: 15,
+      fontWeight: FontWeight.w600,
+      color: color ?? Colors.black,
+    );
+  }
+
+  static TextStyle bold15({Color? color}) {
+    return TextStyle(
+      fontFamily: 'Inter-SemiBold',
+      fontSize: 15,
+      fontWeight: FontWeight.w900,
+      color: color ?? Colors.black,
+    );
+  }
+
+  static const TextStyle semiboldWhite24 = TextStyle(
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w500,
+    color: AppColors.verylightBackground,
+  );
 }
+

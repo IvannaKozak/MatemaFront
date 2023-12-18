@@ -1,39 +1,34 @@
-// ignore_for_file: prefer_const_constructors
+// this file is nowhere used
 
-import 'package:matemafront/models/statistic_chart_data_class.dart';
+import 'package:matemafront/models/week_chart_data_model.dart';
 
-class BarData {
+class ChartData {
   static int interval = 2;
+  static List<Data> barData = [];
 
-  static List<Data> barData = [
-    Data(
-      id: 0,     
-      y: 2,
-    ),
-    Data(
-      id: 1,
-      y: 4,
-    ),
-    Data(
-      id: 2,
-      y: 0,
-    ),
-    Data(
-      id: 3,
-      y: 6,
-    ),
-    Data(
-      id: 4,
-      y: 3,
-    ),
-    Data(
-      id: 5,
-      y: 2,
-    ),
-    Data(
+  static Future<void> fetchChartData() async {
+    List<Map<String, dynamic>> mockJsonData = [
+      {'day': '2023-12-04', 'count': 1},
+      {'day': '2023-12-05', 'count': 2},
+      {'day': '2023-12-06', 'count': 3},
+      {'day': '2023-12-07', 'count': 4},
+      {'day': '2023-12-08', 'count': 5},
+      {'day': '2023-12-09', 'count': 3},
+      {'day': '2023-12-10', 'count': 0}
+    ];
 
-      id: 6,
-      y: 0,
-    ),
-  ];
+    try {
+      barData = mockJsonData.map((data) {
+        DateTime date = DateTime.parse(data['day']);
+        int id = date.weekday;
+
+        return Data(
+          id: id,
+          y: data['count'].toDouble(),
+        );
+      }).toList();
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
 }

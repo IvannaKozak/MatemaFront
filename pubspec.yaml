@@ -16,6 +16,10 @@ dependencies:
   flutter_svg: ^2.0.1
   image_picker: ^1.0.4
   flutter_secure_storage: ^5.1.0
+  fl_chart: ^0.65.0
+  intl: ^0.18.1
+  google_fonts: ^4.0.4
+  animated_background: ^2.0.0
 
 dev_dependencies:
   flutter_test:

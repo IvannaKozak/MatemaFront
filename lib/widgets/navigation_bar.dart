@@ -37,9 +37,11 @@ class NavPageState extends State<MyNavigationBar> {
   ];
 
   void onTabTapped(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+    if (mounted) {
+      setState(() {
+        currentIndex = index;
+      });
+    }
   }
 
   @override
@@ -98,8 +100,8 @@ class NavPageState extends State<MyNavigationBar> {
         ),
         child: SvgPicture.asset(
           imagePath,
-          height: 45,
-          width: 45,
+          height: 35,
+          width: 35,
         ),
       ),
       label: '',

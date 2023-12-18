@@ -58,9 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
       await SecureStorageService().storeToken('accessToken', accessToken);
       await SecureStorageService().storeToken('refreshToken', refreshToken);
 
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const MyNavigationBar()),
+        (route) => false,
       );
     } else {
       // Показати діалогове вікно з помилкою від сервера

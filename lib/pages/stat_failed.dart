@@ -4,20 +4,20 @@ import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/widgets/task_for_statview.dart';
 import 'package:matemafront/api/api_service_task_history.dart';
 
-class StatDone extends StatefulWidget {
-  const StatDone({Key? key}) : super(key: key);
+class StatFailed extends StatefulWidget {
+  const StatFailed({Key? key}) : super(key: key);
 
   @override
-  _StatDoneState createState() => _StatDoneState();
+  _StatFailedState createState() => _StatFailedState();
 }
 
-class _StatDoneState extends State<StatDone> {
-  late Future<List<dynamic>> completedTasks;
+class _StatFailedState extends State<StatFailed> {
+  late Future<List<dynamic>> failedTasks;
 
   // @override
   // void initState() {
   //   super.initState();
-  //   completedTasks = [
+  //   failedTasks = [
   //     {
   //       "task": "Task 1",
   //       "theme": "Theme 1",
@@ -37,7 +37,7 @@ class _StatDoneState extends State<StatDone> {
   @override
   void initState() {
     super.initState();
-    completedTasks = TaskStatService().getCompletedTasks(context);
+    failedTasks = TaskStatService().getFailedTasks(context);
   }
 
   @override
@@ -62,14 +62,14 @@ class _StatDoneState extends State<StatDone> {
           ),
           Expanded(
             child: FutureBuilder<List<dynamic>>(
-              future: completedTasks,
+              future: failedTasks,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(child: Text('No completed tasks available'));
+                  return Center(child: Text('No failed tasks available'));
                 } else {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
@@ -84,7 +84,7 @@ class _StatDoneState extends State<StatDone> {
                             taskName: snapshot.data![index]['task'],
                             isDone: snapshot.data![index]['is_done'] ?? false,
                             completionDate: parsedDate,
-                            mark: snapshot.data![index] ['mark'],
+                            mark: snapshot.data![index]['mark'],
                           ),
                           const SizedBox(height: AppDimensions.xxxxs),
                         ],
