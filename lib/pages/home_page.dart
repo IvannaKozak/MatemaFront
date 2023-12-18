@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matemafront/api/api_service_home_page.dart';
-import 'package:matemafront/models/task_model.dart';
+import 'package:matemafront/models/generated_task_model.dart';
+import 'package:matemafront/models/user_model.dart';
 import 'package:matemafront/widgets/score_bar.dart';
 import 'package:matemafront/widgets/task_widget.dart';
 import 'package:matemafront/utils/app_colors.dart';
@@ -17,6 +18,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final ApiService _apiService = ApiService();
+
+  Future<List<TaskContainer>> _fetchTasks(BuildContext context) async {
+    try {
+      // Fetch the user
+      User user = await _apiService.getUser(context);
+      // Use the username to fetch tasks
+      return await _apiService.getTasks(context, user.username);
+    } catch (error) {
+      // Handle errors, e.g., show a message
+      print('Error fetching tasks: $error');
+      return [];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: AppDimensions.t,
       ),
       backgroundColor: AppColors.verylightBackground,
-      body: FutureBuilder<List<Task>>(
+      body: FutureBuilder<List<TaskContainer>>(
         // Using FutureBuilder to handle async data
-        future: _apiService.getTasks(context),
+        future: _fetchTasks(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -82,15 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.zero,
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  Task task = snapshot.data![index];
+                  TaskContainer taskContainer = snapshot.data![index];
+                  Task task = taskContainer.task;
                   return Column(
-                    // Wrap TaskWidget with a Column
                     children: [
                       if (index == 0) const SizedBox(height: 10),
                       TaskWidget(task: task), // Your existing task widget
-                      const SizedBox(
-                          height:
-                              10), // SizedBox for spacing between task items
+                      const SizedBox(height: 10),
                     ],
                   );
                 },

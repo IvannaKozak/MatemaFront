@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:matemafront/models/task_model.dart';
+import 'package:matemafront/models/generated_task_model.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
