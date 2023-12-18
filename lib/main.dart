@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const MyNavigationBar(),
-      // home: LoginScreen(),
-      home: const BadResultPage(),
+      home: LoginScreen(),
+      // home: const BadResultPage(),
     );
   }
 }
