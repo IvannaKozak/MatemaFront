@@ -10,7 +10,7 @@ class TaskStatService {
   Future<List<dynamic>> fetchCompletedTasks(BuildContext context) async {
     try {
       String username = await fetchUsername(context);
-      var url = Uri.parse("$baseUrl/task/statistic/test_ivanka/");
+      var url = Uri.parse("$baseUrl/task/statistic/$username/");
       var response = await http.get(url);
 
       if (response.statusCode == 200) {

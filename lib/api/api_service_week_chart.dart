@@ -18,7 +18,7 @@ class ChartData {
       String? username = await fetchUsername(context); 
 
       final response = await http.get(
-        Uri.parse('$baseUrl/statistic/task/week/test_ivanka'),
+        Uri.parse('$baseUrl/statistic/task/week/$username'),
       );
 
       if (response.statusCode == 200) {
