@@ -34,17 +34,17 @@ class WeekTaskWidget extends StatelessWidget {
               child: Row(
                 children: [
                   const SizedBox(width: AppDimensions.xxxxs),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Дуже складна задача',
                           style: AppFonts.boldWhite26,
                         ),
-                        SizedBox(height: AppDimensions.xxxt),
-                        Text(
+                        const SizedBox(height: AppDimensions.xxxt),
+                        const Text(
                           'Задача на тиждень',
                           style: AppFonts.semiboldWhite20,
                         ),

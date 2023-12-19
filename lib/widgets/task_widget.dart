@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/models/generated_task_model.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
 
 class TaskWidget extends StatelessWidget {
-  const TaskWidget({Key? key}) : super(key: key);
+  const TaskWidget({Key? key, required this.task}) : super(key: key);
+  final Task task;
 
   @override
   Widget build(BuildContext context) {
@@ -19,58 +21,55 @@ class TaskWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: AppDimensions.xl,
-              decoration: const BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(AppDimensions.xxxxs),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        task.name,
+                        style: AppFonts.boldDark26,
+                      ),
+                      const SizedBox(height: AppDimensions.xxxt),
+                      Text(
+                        task.theme,
+                        style: AppFonts.semiboldDark20,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              child: Row(
-                children: [
-                  const SizedBox(width: AppDimensions.xxxxs),
-                  const Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Задача про метеликів',
-                          style: AppFonts.boldDark26,
-                        ),
-                        SizedBox(height: AppDimensions.xxxt),
-                        Text(
-                          'Логічна задача',
-                          style: AppFonts.semiboldDark20,
-                        ),
-                      ],
-                    ),
+              Container(
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: AppColors.appPurple,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
-                  Container(
-                    width: 60,
-                    decoration: const BoxDecoration(
-                      color: AppColors.appPurple,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: const Text(
-                      '+1',
-                      style: AppFonts.boldWhite26,
-                    ),
-                  ),
-                ],
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  '+${task.point}',
+                  style: AppFonts.boldWhite26,
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
@@ -39,11 +40,11 @@ class RegisterScreen extends StatelessWidget {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -52,8 +53,8 @@ class RegisterScreen extends StatelessWidget {
                           color: Colors.purple,
                         ),
                       ),
-                      SizedBox(height: 5.0),
-                      Text(
+                      const SizedBox(height: 5.0),
+                      const Text(
                         'Приємно познайомитися, \n створіть свій обліковий запис;)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -82,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           hintText: 'Нікнейм',
                           filled: true,
@@ -101,91 +102,91 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Ім`я',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Прізвище',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Повторити пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                         ),
                       ),
@@ -194,8 +195,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppDimensions.xxxxs),
-
-
               Container(
                 margin: const EdgeInsets.only(left: AppDimensions.m),
                 width: 370,
@@ -203,7 +202,7 @@ class RegisterScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -225,21 +224,18 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-
-              
               const SizedBox(height: AppDimensions.xxxs),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -250,7 +246,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -275,8 +271,8 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.zero,
@@ -306,8 +302,8 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -360,3 +356,5 @@ void main() {
     home: RegisterScreen(),
   ));
 }
+
+*/

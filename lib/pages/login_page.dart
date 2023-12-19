@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:matemafront/api/secure_storage_service.dart';
+import 'package:matemafront/pages/register_page_logic.dart';
 import 'package:matemafront/utils/app_colors.dart';
 import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:matemafront/utils/app_fonts.dart';
-import 'package:matemafront/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:matemafront/widgets/navigation_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,11 +23,11 @@ class _LoginScreenState extends State<LoginScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Помилка'),
-          content: Text('Будь ласка, заповніть всі поля.'),
+          title: const Text('Помилка'),
+          content: const Text('Будь ласка, заповніть всі поля.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -48,9 +51,16 @@ class _LoginScreenState extends State<LoginScreen> {
     var message = json.decode(response.body);
 
     if (response.statusCode == 201 || response.statusCode == 200) {
-      Navigator.pushReplacement(
+      String accessToken = message['access'];
+      String refreshToken = message['refresh'];
+
+      await SecureStorageService().storeToken('accessToken', accessToken);
+      await SecureStorageService().storeToken('refreshToken', refreshToken);
+
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyNavigationBar()),
+        (route) => false,
       );
     } else {
       // Показати діалогове вікно з помилкою від сервера
@@ -83,10 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
             style: AppFonts.semiboldDark50,
           ),
         ),
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.verylightBackground,
         elevation: AppDimensions.t,
       ),
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: AppColors.verylightBackground,
       body: ListView(
         children: [
           Column(
@@ -107,11 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -120,13 +130,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.purple,
                         ),
                       ),
-                      SizedBox(height: 5.0),
-                      Text(
-                        'З поверненням, увійдіть у ваш обліковий запис',
+                      const SizedBox(height: 5.0),
+                      const Text(
+                        'З поверненням! Увійдіть у ваш обліковий запис',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           fontSize: 18,
                           color: Colors.black,
                         ),
@@ -138,45 +148,55 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 35),
               Container(
                 margin: const EdgeInsets.only(right: AppDimensions.m),
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        controller: passwordController,
-                        decoration: InputDecoration(
-                          hintText: 'Пароль',
-                          filled: true,
-                          fillColor: AppColors.white,
-                          border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                        ),
+                child: TextField(
+                  controller: usernameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Нікнейм',
+                    filled: true,
+                    fillColor: AppColors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.zero,
+                        bottomLeft: Radius.zero,
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
                       ),
                     ),
-                    const SizedBox(height: AppDimensions.xxxxs),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColors.appPurple, width: 2.0),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.zero,
+                        bottomLeft: Radius.zero,
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppDimensions.xxxxs),
+              Container(
+                margin: const EdgeInsets.only(right: AppDimensions.m),
+                child: Column(
+                  children: [
                     TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                        hintText: 'Нікнейм',
+                      controller: passwordController,
+                      decoration: const InputDecoration(
+                        hintText: 'Пароль',
                         filled: true,
                         fillColor: AppColors.white,
                         border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            bottomLeft: Radius.zero,
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: AppColors.appPurple, width: 2.0),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.zero,
                             bottomLeft: Radius.zero,
@@ -212,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -238,14 +258,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -256,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -281,8 +301,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     //padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
@@ -313,8 +333,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -331,7 +351,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: AppDimensions.xxs),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+                  );
+                },
                 child: RichText(
                   text: const TextSpan(
                     text: 'У вас ще немає облікового запису? ',
@@ -362,11 +387,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: LoginScreen(),
-    routes: {
-      '/MyHomePage': (context) => MyHomePage(),
-    },
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: LoginScreen(),
+//     routes: {
+//       '/navPage': (context) => const MyNavigationBar(),
+//     },
+//   ));
+// }

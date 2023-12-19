@@ -4,6 +4,7 @@ import 'package:matemafront/utils/app_dimensions.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+
 class TestWindow extends StatefulWidget {
   final String username;
 
@@ -110,6 +111,7 @@ class _TestWindowState extends State<TestWindow> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,6 +140,7 @@ class _TestWindowState extends State<TestWindow> {
                               bottomRight: Radius.circular(20),
                               topLeft: Radius.zero,
                               bottomLeft: Radius.zero,
+
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -187,6 +190,7 @@ class _TestWindowState extends State<TestWindow> {
                               bottomLeft: Radius.circular(20),
                               topRight: Radius.zero,
                               bottomRight: Radius.zero,
+
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -289,6 +293,7 @@ class _TestWindowState extends State<TestWindow> {
                       ),
                       child: TextField(
                         controller: answerController,
+
                         decoration: InputDecoration(
                           hintText: '173',
                           filled: true,
@@ -333,7 +338,7 @@ class _TestWindowState extends State<TestWindow> {
                 child: ElevatedButton(
                   onPressed: answerUser,
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(

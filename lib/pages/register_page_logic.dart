@@ -19,10 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController re_passwordController = TextEditingController();
 
-  
-
   Future<void> registerUser() async {
-    
     if (usernameController.text.isEmpty ||
         first_nameController.text.isEmpty ||
         last_nameController.text.isEmpty ||
@@ -32,11 +29,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Помилка'),
-          content: Text('Будь ласка, заповніть всі поля.'),
+          title: const Text('Помилка'),
+          content: const Text('Будь ласка, заповніть всі поля.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -51,11 +48,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Помилка'),
-          content: Text('Упс..Паролі не збігаються.'),
+          title: const Text('Помилка'),
+          content: const Text('Упс..Паролі не збігаються.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -81,14 +78,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // Читання відповіді
     var message = json.decode(response.body);
 
-    if (response.statusCode == 201 || response.statusCode == 200 ) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       Navigator.pushReplacement(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Confirm_email(username: usernameController.text),
-  ),
-);
-
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              Confirm_email(username: usernameController.text),
+        ),
+      );
     } else {
       // Показати діалогове вікно з помилкою від сервера
       showDialog(
@@ -120,10 +117,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             style: AppFonts.semiboldDark50,
           ),
         ),
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.verylightBackground,
         elevation: AppDimensions.t,
       ),
-      backgroundColor: AppColors.lightBackground,
+      backgroundColor: AppColors.verylightBackground,
       body: ListView(
         children: [
           Column(
@@ -144,11 +141,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     bottomRight: Radius.zero,
                   ),
                 ),
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Привіт друже 👋',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -157,13 +154,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: Colors.purple,
                         ),
                       ),
-                      SizedBox(height: 5.0),
-                      Text(
+                      const SizedBox(height: 5.0),
+                      const Text(
                         'Приємно познайомитися, \n створіть свій обліковий запис;)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           fontSize: 18,
                           color: Colors.black,
                         ),
@@ -173,10 +170,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 35),
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: EdgeInsets.only(left: 16.0),
                   child: Text(
                     'Нікнейм',
                     style: TextStyle(
@@ -205,28 +202,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       child: TextField(
                         controller: usernameController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Нікнейм',
                           filled: true,
                           fillColor: AppColors.white,
                           border: InputBorder.none,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.zero,
-                              bottomLeft: Radius.zero,
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
+                          // enabledBorder: OutlineInputBorder(
+                          //   borderSide: BorderSide.none,
+                          //   borderRadius: BorderRadius.only(
+                          //     topLeft: Radius.zero,
+                          //     bottomLeft: Radius.zero,
+                          //     topRight: Radius.circular(10),
+                          //     bottomRight: Radius.circular(10),
+                          //   ),
+                          // ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           'Ім`я',
                           style: TextStyle(
@@ -241,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 5),
                     TextField(
                       controller: first_nameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Ім`я',
                         filled: true,
                         fillColor: AppColors.white,
@@ -258,10 +255,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           'Прізвище',
                           style: TextStyle(
@@ -276,7 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 5),
                     TextField(
                       controller: last_nameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Прізвище',
                         filled: true,
                         fillColor: AppColors.white,
@@ -293,10 +290,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           'Email',
                           style: TextStyle(
@@ -311,7 +308,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 5),
                     TextField(
                       controller: emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Email',
                         filled: true,
                         fillColor: AppColors.white,
@@ -328,10 +325,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           'Пароль',
                           style: TextStyle(
@@ -346,7 +343,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 5),
                     TextField(
                       controller: passwordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Пароль',
                         filled: true,
                         fillColor: AppColors.white,
@@ -363,10 +360,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: AppDimensions.xxxxs),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(left: 16.0),
                         child: Text(
                           'Повторити пароль',
                           style: TextStyle(
@@ -381,7 +378,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 5),
                     TextField(
                       controller: re_passwordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Повторити пароль',
                         filled: true,
                         fillColor: AppColors.white,
@@ -408,7 +405,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ElevatedButton(
                   onPressed: registerUser,
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 125, 86, 165),
+                    backgroundColor: const Color.fromARGB(255, 125, 86, 165),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: const RoundedRectangleBorder(
@@ -434,14 +431,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Або',
                       style: TextStyle(
@@ -452,7 +449,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Colors.grey,
                       thickness: 1, // Specify the thickness of the Divider
@@ -477,8 +474,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.zero,
@@ -508,8 +505,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(0xFF6B7280),
+                    foregroundColor: const Color(0xFF6B7280),
+                    backgroundColor: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -557,11 +554,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: RegisterScreen(),
-    routes: {
-      '/confirmEmail': (context) => Confirm_email(username: "usernameController"),
-    },
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: RegisterScreen(),
+//     routes: {
+//       '/confirmEmail': (context) =>
+//           Confirm_email(username: 'usernameController'),
+//     },
+//   ));
+// }
